@@ -15002,8 +15002,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977b637047aee064d8f049c617e981a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSpot: {fileID: 1542670711}
-  isStun: 0
 --- !u!136 &1470474396
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15628,11 +15626,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 166305226376271800, guid: d31e4f20d1a526343a489923127fc157, type: 3}
   m_PrefabInstance: {fileID: 1541657220}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1542670711 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4801284258446630579, guid: 12348fc04884c514184365cc4df792af, type: 3}
-  m_PrefabInstance: {fileID: 99394716}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1545575411
 PrefabInstance:
@@ -23001,7 +22994,7 @@ Animator:
   m_GameObject: {fileID: 1931297291926813}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 6520c6d7889f4c72b416f07f34edd515, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9bbcf96c9a254c5ba654027c656d7b39, type: 2}
+  m_Controller: {fileID: 9100000, guid: 851ac28d39c53a0488241a1e249aab22, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
