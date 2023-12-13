@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ConveyorBelts : MonoBehaviour
 {
+    int extraForce = 50;
     public float speed;
     public Vector3 direction;
     public List<GameObject> belts;
@@ -20,7 +21,7 @@ public class ConveyorBelts : MonoBehaviour
         for (int i = 0; i < belts.Count; i++)
         {
             if (belts[i].GetComponent<Player>() != null)
-                belts[i].GetComponent<Rigidbody>().AddForce(direction * speed);
+                belts[i].GetComponent<Rigidbody>().AddForce(direction * speed * Time.deltaTime * extraForce);
             else
                 belts[i].GetComponent<Rigidbody>().velocity = direction * speed * Time.deltaTime;
         }
