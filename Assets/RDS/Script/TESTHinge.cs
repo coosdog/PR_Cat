@@ -15,14 +15,17 @@ public class TESTHinge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     IEnumerator Cool()
     {
-        yield return new WaitForSeconds(3);
-        joint.useMotor = true;
-        yield return new WaitForSeconds(10);
-        joint.useMotor = false;
+        while (true)
+        {
+            yield return new WaitForSeconds(3);
+            joint.useMotor = true;
+            yield return new WaitForSeconds(10);
+            joint.useMotor = false;
+        }
     }
 
 }
