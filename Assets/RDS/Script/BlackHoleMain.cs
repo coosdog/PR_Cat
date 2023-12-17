@@ -1,10 +1,13 @@
 using JongWoo;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlackHoleMain : MonoBehaviour
 {
+    public Light Wanning;
+
     float nowTime = 0;
     float holeTime = 5;
     float holePower = 1;
@@ -14,19 +17,32 @@ public class BlackHoleMain : MonoBehaviour
     [SerializeField] Vector3 holePos;
     Collider[] cols;
     List<Collider> colliders;
+    AudioSource audio;
+    Color wanningColor;
 
     void Start()
     {
+        wanningColor = Color.red;
+        audio = GetComponent<AudioSource>();
         holePos = transform.position - 2 * Vector3.up;
         blackHoleCo = BlackHoleCo();
         StartCoroutine(blackHoleCo);
+    }
+    private void Update()
+    {
+        if(holePower > 1)
+        {
+            Wanning.color = wanningColor;
+            audio.enabled = true;
+            Wanning.transform.Rotate(Vector3.left);
+        }
     }
 
     IEnumerator BlackHoleCo()
     {
         while (true)
         {
-            yield return new WaitForSeconds(5f); // 홀이 열리는 주기(5초마다)
+            yield return new WaitForSeconds(3f); // 홀이 열리는 주기(5초마다)
             while (nowTime <= holeTime) // 홀타임동안 진행
             {
                 cols = Physics.OverlapSphere(holePos, holeRadius, 1 << 6 | 1 << 29);
@@ -47,7 +63,7 @@ public class BlackHoleMain : MonoBehaviour
     {
         foreach (Collider col in cols)
         {
-            if (col.GetComponent<Trash>() != null && col.GetComponent<Trash>().Weight > holePower)
+            if(col.GetComponent<Rigidbody>() != null && col.GetComponent<Rigidbody>().mass > holePower)
             {
                 continue;
             }
@@ -57,8 +73,8 @@ public class BlackHoleMain : MonoBehaviour
                 col.GetComponent<PlayerController>().Speed = 0;
             }
             col.GetComponent<Rigidbody>().isKinematic = false;
-            col.gameObject.transform.RotateAround(transform.position, Vector3.up, 1); // 홀을 중심점으로 y축기준으로 1도로 돌림
-            col.gameObject.transform.position = Vector3.MoveTowards(col.gameObject.transform.position, holePos, 0.05f); // 홀을 향해 이동transform.position
+            col.gameObject.transform.RotateAround(transform.position, Vector3.up, 0.5f); // 홀을 중심점으로 y축기준으로 1도로 돌림
+            col.gameObject.transform.position = Vector3.MoveTowards(col.gameObject.transform.position, holePos, holePower * Time.deltaTime); // 홀을 향해 이동transform.position
         }
     }
     public void ReSetColArr(Collider[] cols)
