@@ -5,6 +5,7 @@ using UnityEngine;
 public class TESTHinge : MonoBehaviour
 {
     public HingeJoint joint;
+    int breakCount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,14 +16,20 @@ public class TESTHinge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     IEnumerator Cool()
     {
-        yield return new WaitForSeconds(3);
-        joint.useMotor = true;
-        yield return new WaitForSeconds(10);
-        joint.useMotor = false;
+        while (true)
+        {
+            if (breakCount > 5)
+                break;
+            yield return new WaitForSeconds(3);
+            joint.useMotor = true;
+            yield return new WaitForSeconds(7);
+            joint.useMotor = false;
+            breakCount++;
+        }
     }
 
 }

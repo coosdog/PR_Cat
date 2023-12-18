@@ -6,15 +6,7 @@ using JongWoo;
 public class Button : MonoBehaviour
 {
     public CreateCar[] Maker = new CreateCar[2];
-    void Start()
-    {
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.GetComponent<Player>() != null)
@@ -24,6 +16,13 @@ public class Button : MonoBehaviour
             {
                 Maker[i].CancelInvoke();
                 //Maker[i].gameObject.SetActive(false);
+            }
+        }
+        if(other.GetComponent<Bounce>() != null)
+        {
+            for (int i = 0; i < Maker.Length; i++)
+            {
+                Maker[i].CancelInvoke();
             }
         }
     }

@@ -8,6 +8,7 @@ namespace JongWoo
 {
     public class Player : MonoBehaviour
     {
+        public bool IsStun;
         public Transform weaponSpot;
         [SerializeField] bool isGrab;
 
@@ -71,7 +72,7 @@ namespace JongWoo
         }
     }
 }
-namespace OHYEOM
+/*namespace OHYEOM
 {
     public class PlayerWeapon : IActiveable
     {
@@ -192,3 +193,4 @@ namespace OHYEOM
         //}    
     }
 }
+*/

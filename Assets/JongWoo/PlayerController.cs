@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Camera cam;
 
     [SerializeField] private float speed;
     public float Speed
@@ -29,10 +30,13 @@ public class PlayerController : MonoBehaviour
     {
         if (variableJoystick.Vertical != 0 || variableJoystick.Horizontal != 0)
         {
-            Vector3 direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
-            rb.AddForce(direction * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            Vector3 direction = cam.transform.localRotation * Vector3.forward * variableJoystick.Vertical +
+                cam.transform.localRotation * Vector3.right * variableJoystick.Horizontal; //1215 카메라방향으로 수정 유대선
+            direction.y = 0f;
+            direction = direction.normalized;
+            rb.AddForce( direction * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
 
-            this.transform.rotation = Quaternion.Euler(0f, Mathf.Atan2(this.variableJoystick.Horizontal, this.variableJoystick.Vertical) * Mathf.Rad2Deg, 0f); //캐릭터 회전 1206수빈
+            this.transform.rotation = Quaternion.LookRotation(direction);//1215 카메라방향으로 수정 유대선
             if (Vector3.Magnitude(direction) <= 0.5)
             {
                 animator.SetFloat("RelativeSpeed", 0.5f);   //조이스틱 벡터 크기에 따른 애니메이션 변경 1206수빈
