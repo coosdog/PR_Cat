@@ -1,28 +1,23 @@
 using JongWoo;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using Temp;
 
-namespace JongWoo
+public class Weapon_Shoot : Weapon
 {
-    public class Weapon_Shoot : Weapon
+    //public override void SetStrategy()
+    //{
+    //    // strategy = gameObject.GetComponent<GunStrategy>();
+    //}
+    /*
+    public override void SetStatus() { }
+
+    public override void Use()
     {
-        //ÃÑ±¸: ÃÑ¾ËÀÌ ¹ß»çµÇ´Â À§Ä¡¸¦ ÀÎ½ºÆåÅÍ¿¡¼­ ¼³Á¤ÇØÁà¿ä!
-        [SerializeField] protected GameObject shotPoint;
-        //ºÎ·¿¶Ç³ë »çÅ×Äì¸® µ¥½º
-        public float range;
-
-        public GameObject bullet;
-
-
-
-        public override void SetStatus() { }
-
-        public override void Use()
-        {
-            Debug.Log("»Ð»Ð ½î´Â ¹«±â ½ÃÄö½º");
-        }
-
+        Debug.Log("»Ð»Ð ½î´Â ¹«±â ½ÃÄö½º");
     }
-
+   */
 }
+
