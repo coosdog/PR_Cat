@@ -9880,7 +9880,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6a4c779674385e34c81a1205a49fe16f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14987,6 +14987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87b0f61ab4a79a48a053eb0eb1cd7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
   speed: 600
   variableJoystick: {fileID: 1110056127}
   rb: {fileID: 0}
@@ -15002,6 +15003,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977b637047aee064d8f049c617e981a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsStun: 0
+  weaponSpot: {fileID: 0}
+  isGrab: 0
+  grabButton: {fileID: 0}
 --- !u!136 &1470474396
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -16866,7 +16871,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6a4c779674385e34c81a1205a49fe16f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18443,7 +18448,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6a4c779674385e34c81a1205a49fe16f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19253,7 +19258,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6a4c779674385e34c81a1205a49fe16f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
