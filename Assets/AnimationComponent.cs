@@ -10,7 +10,7 @@ namespace Temp
 {
     public class AnimationComponent : MonoBehaviour, IAnimationable
     {
-        JongWoo.Weapon weapon;
+        Weapon weapon;
         public Animator Animator => GetComponent<Animator>();
         public Item CurItem
         {

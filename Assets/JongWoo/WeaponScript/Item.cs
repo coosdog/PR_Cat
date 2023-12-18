@@ -30,7 +30,7 @@ namespace Temp
         public WEAPON_TYPE WeaponType;        
         public static Dictionary<WEAPON_TYPE, AttackStrategy> weaponDic;
         public AttackStrategy strategy;        
-        public JongWoo.Weapon weapon;
+        public Weapon weapon;
         // 플레이어가 주웠을 때 weapon을 플레이어의 weapon으로 넣어준다.        
 
         private void Start()

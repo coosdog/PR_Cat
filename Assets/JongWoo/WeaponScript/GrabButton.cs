@@ -63,7 +63,7 @@ public class GrabButton : MonoBehaviour
         Debug.Log("테스트버튼");
     }
 
-    public void Drop(Weapon obj, ref bool changeValue)
+    public void Drop(Temp.Weapon obj, ref bool changeValue)
     {
         changeValue = false;
         if (obj == null)

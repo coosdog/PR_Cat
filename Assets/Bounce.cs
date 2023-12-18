@@ -27,7 +27,7 @@ public class Bounce : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.GetComponent<Player>() != null) 
+        if(other.transform.GetComponent<TestPlayer>() != null) 
         {
             other.gameObject.SetActive(false);
         }

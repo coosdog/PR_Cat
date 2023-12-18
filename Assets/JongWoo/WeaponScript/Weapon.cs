@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Temp;
 using UnityEngine;
 
-namespace JongWoo
+namespace Temp
 {
     public class Weapon : MonoBehaviour, IAttackable
     {
@@ -40,12 +40,12 @@ namespace JongWoo
         public void SpawnEffect()
         {
             mst.SpawnEffect();
-        }
+        }        
 
-        public void Attack(TestPlayer player)
+        public void Attack(Temp.TestPlayer player)
         {
             if (mst != null)
-            {                
+            {
                 mst.Attack(player);
             }
         }

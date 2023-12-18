@@ -1,4 +1,3 @@
-using JongWoo;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +19,7 @@ public class ConveyorBelts : MonoBehaviour
     {
         for (int i = 0; i < belts.Count; i++)
         {
-            if (belts[i].GetComponent<Player>() != null)
+            if (belts[i].GetComponent<TestPlayer>() != null)
                 belts[i].GetComponent<Rigidbody>().AddForce(direction * speed * Time.deltaTime * extraForce);
             else
                 belts[i].GetComponent<Rigidbody>().velocity = direction * speed * Time.deltaTime;
