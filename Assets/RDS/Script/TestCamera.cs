@@ -5,7 +5,7 @@ using JongWoo;
 
 public class TestCamera : MonoBehaviour
 {
-    public TestPlayer player;
+    public Temp.TestPlayer player;
 
     void Update()
     {

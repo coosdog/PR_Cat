@@ -28,7 +28,7 @@ namespace Temp
         //[SerializeField] private WEAPON_TYPE weaponType;
 
         public WEAPON_TYPE WeaponType;        
-        public static Dictionary<WEAPON_TYPE, AttackStrategy> weaponDic;
+        public static Dictionary<WEAPON_TYPE, AttackStrategy> weaponDic = new Dictionary<WEAPON_TYPE, AttackStrategy>();
         public AttackStrategy strategy;        
         public Weapon weapon;
         // 플레이어가 주웠을 때 weapon을 플레이어의 weapon으로 넣어준다.        

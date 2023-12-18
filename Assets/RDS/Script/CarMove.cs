@@ -15,7 +15,7 @@ public class CarMove : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.GetComponent<TestPlayer>() != null) 
+        if(collision.gameObject.GetComponent<Temp.TestPlayer>() != null) 
         {
             collision.gameObject.SetActive(false);
             Debug.Log("Ãæµ¹!");
