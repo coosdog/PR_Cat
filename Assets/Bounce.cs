@@ -1,3 +1,4 @@
+using JongWoo;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,5 +24,12 @@ public class Bounce : MonoBehaviour
     {
         rb.velocity = Vector3.zero; 
         rb.AddForce(Vector3.up * 2f, ForceMode.Impulse);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.GetComponent<Temp.TestPlayer>() != null) 
+        {
+            other.gameObject.SetActive(false);
+        }
     }
 }

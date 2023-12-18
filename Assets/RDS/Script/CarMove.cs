@@ -15,8 +15,9 @@ public class CarMove : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.GetComponent<Player>() != null) 
+        if(collision.gameObject.GetComponent<Temp.TestPlayer>() != null) 
         {
+            collision.gameObject.SetActive(false);
             Debug.Log("충돌!");
             //collision.rigidbody.AddForce(new Vector3(0,0,-1000)*Time.deltaTime,ForceMode.Impulse);
             //수정필요 뭔가이상함. 차후 기절수치로 조절
