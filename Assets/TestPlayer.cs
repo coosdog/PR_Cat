@@ -4,9 +4,9 @@ using UnityEngine;
 using JongWoo;
 using UnityEngine.UIElements;
 
-// ÇÃ·¹ÀÌ¾î¿Í ¸ó½ºÅÍ µÑ´Ù ¸Â¾ÒÀ» ¶§ µ¿½ÃÃ³¸®ÇÏµµ·Ï ÀÎÅÍÆäÀÌ½º¸¦ »ç¿ëÇÒ ¿¹Á¤
+// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½ ï¿½Â¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-// ÇàÀ§(ÀÎÅÍÆäÀÌ½º) È¿°ú(ÀÎÅÍÆäÀÌ½º) ³ª´©´Â °Í
+// ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½) È¿ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
 namespace Temp
 {
@@ -20,7 +20,7 @@ namespace Temp
         public float Atk { get; }
         public GameObject EffectParticle { get; }
         public void SpawnEffect(); 
-        public void Attack(TestPlayer player); // ÇÃ·¹ÀÌ¾î¿¡¸¸ È¿°ú¸¦ ÁÙ ÀÎÅÍÆäÀÌ½º ±â´É
+        public void Attack(TestPlayer player); // ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½
 
         
     }
@@ -56,19 +56,19 @@ namespace Temp
     {
         public override void Action(IAnimationable animationable)
         {
-            animationable.Animator.SetTrigger("IsAttack"); // ³ªÁß¿¡ ÁÖ¸ÔÁú·Î ¹Ù²Ü°Í
+            animationable.Animator.SetTrigger("IsAttack"); // ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ü°ï¿½
         }
         public override void Attack(TestPlayer player)
         {            
-            // ÁÖ¸Ô°ø°Ý
-            // ±âÀý½ºÅÃ ¿Ã¸®±â
+            // ï¿½Ö¸Ô°ï¿½ï¿½ï¿½
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½
         }
     }
 
     public class SwordStrategy : MeleeAttackStrategy
     {
-        // ÇàÀ§¿¡ ´ëÇÑ ¾à¼Ó
-        // È¿°ú¿¡ ´ëÇÑ ¾à¼Ó        
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+        // È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½        
         public override void Action(IAnimationable animationable)
         {
 
@@ -77,14 +77,14 @@ namespace Temp
 
         public override void Attack(TestPlayer player)
         {
-            // °ËÀÇ È¿°ú ±â´É
+            // ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ ï¿½ï¿½ï¿½
         }
     }
 
     public class BatStrategy : MeleeAttackStrategy
     {
-        // ÇàÀ§¿¡ ´ëÇÑ ¾à¼Ó
-        // È¿°ú¿¡ ´ëÇÑ ¾à¼Ó        
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+        // È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½        
         public override void Action(IAnimationable animationable)
         {
             animationable.Animator.SetTrigger("IsAttack");
@@ -93,8 +93,8 @@ namespace Temp
 
         public override void Attack(TestPlayer player)
         {
-            // ¹èÆ®ÀÇ È¿°ú ±â´É
-            Debug.Log("¹èÆ® È¿°ú");
+            // ï¿½ï¿½Æ®ï¿½ï¿½ È¿ï¿½ï¿½ ï¿½ï¿½ï¿½
+            Debug.Log("ï¿½ï¿½Æ® È¿ï¿½ï¿½");
         }
     }
 
@@ -155,7 +155,7 @@ namespace Temp
             set
             {
                 isUse = value;
-                if (!isUse) // ¹«±â¸¦ ÀåÂøÇÏÁö ¾ÊÀ» ¶§ ±âº»°ø°ÝÀ¸·Î ¼¼ÆÃ
+                if (!isUse) // ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 {
                     SetDefault();                    
                 }                
@@ -193,7 +193,7 @@ namespace Temp
 
         public void UseStrategy()
         {            
-            if(BtnInteraction()) // isUse°¡ falseÀÏ¶§¸¸
+            if(BtnInteraction()) // isUseï¿½ï¿½ falseï¿½Ï¶ï¿½ï¿½ï¿½
                 return;            
             curWeapon.Strategy.Action(animComponent);
         }
@@ -204,7 +204,7 @@ namespace Temp
             if (col == null || IsUse)
                 return false;
             Item item = col.GetComponent<Item>();
-            if (item.weapon != null) // ÀÌ¹Ì ¼ÒÀ¯ÁÖ°¡ ÀÖ´Â ¾ÆÀÌÅÛÀÌ¶ó¸é
+            if (item.weapon != null) // ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½
                 return false;
             SetWeapon(col, item);
             return true;
@@ -212,7 +212,7 @@ namespace Temp
 
         public void SetWeapon(Collider col, Item item)
         {
-            Debug.Log("´Ù½ÃÃ£À»¼öÀÖÀ½");
+            Debug.Log("ï¿½Ù½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
             item.weapon = curWeapon;
 
             item.weapon.owner = this;
@@ -231,8 +231,8 @@ namespace Temp
 
         public Collider SearchItem()
         {
-            Collider[] cols = Physics.OverlapSphere(transform.position, 2, 1<<7); // Item Layer¸¸ °ËÃâ
-            if(cols.Length > 0) // °¡Àå°¡±î¿î³ð Ã³¸®ÇØÁÙ°Í
+            Collider[] cols = Physics.OverlapSphere(transform.position, 2, 1<<7); // Item Layerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            if(cols.Length > 0) // ï¿½ï¿½ï¿½å°¡ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ï¿½Ù°ï¿½
             {                
                 return cols[0];
             }
@@ -243,11 +243,11 @@ namespace Temp
         {
             if (curWeapon.Strategy == Item.weaponDic[Item.WEAPON_TYPE.DEFAULT])
             {
-                Debug.Log("¹«±â¾øÀ½");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                 return;
             }
             //obj.GetComponent<Collider>().enabled = true;
-            curWeapon.transform.GetChild(0).transform.SetParent(null); // ¼öÁ¤
+            curWeapon.transform.GetChild(0).transform.SetParent(null); // ï¿½ï¿½ï¿½ï¿½
             IsUse = false;            
             animComponent.CurItem = null;
         }
@@ -262,15 +262,15 @@ namespace Temp
                 //    Hit(attackable);
                 //}
                 //attackable.Attack(this);
-                // ¾ÆÀÌÅÛÀÌ°Å³ª ³ªÀÇ ¹«±â¶ó¸é ´ë¹ÌÁö¸¦ ¾ÈÀÔ°Ô
-                // ¾ÆÀÌÅÛ ·¹ÀÌ¾î°Å³ª ³ªÀÇ ·¹ÀÌ¾î¶ó¸é ´ë¹ÌÁö¸¦ ¾ÈÀÔÀ½
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô°ï¿½
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-                // ÃÑ¾Ë, ±ÙÁ¢¹«±â´Â IAttackable, IAttackableÀÌ Å¸°Ù·¹ÀÌ¾î¸¦ °¡Áö°í ÀÖ°í
-                // ±×³ðÀÇ ·¹ÀÌ¾î¸¦ °¡Á®¿Í ³» ·¹ÀÌ¾î¿Í µ¿ÀÏÇÏ¸é ´ë¹ÌÁö¸¦ ÁÖ´Â Çü½Ä
-                // Æ÷ÅæÀ» ÀÌ¿ëÇÒ¶§
-                // ÀÚ±âÀÚ½ÅÀÌ Player¶ó´Â ·¹ÀÌ¾î°í ³ª¸ÓÁö°¡ Enemy·Î ¼³Á¤À» ÇßÀ» ¶§
-                // ±× EnemyÀÔÀå¿¡¼­ ÀÚ½ÅÀÌ Player°í ³ª¸ÓÁö°¡ Enemy·¹ÀÌ¾î·Î Ã³¸®°¡ µÉÅÙµ¥
-                // ¾î¶»°Ô ÇØ¾ßÇÏ³ª?
+                // ï¿½Ñ¾ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IAttackable, IAttackableï¿½ï¿½ Å¸ï¿½Ù·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½
+                // ï¿½×³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ò¶ï¿½
+                // ï¿½Ú±ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ Playerï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Enemyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+                // ï¿½ï¿½ Enemyï¿½ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ Playerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Enemyï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ùµï¿½
+                // ï¿½î¶»ï¿½ï¿½ ï¿½Ø¾ï¿½ï¿½Ï³ï¿½?
                 // if(attackable is Weapon)
                 if (attackable is Weapon)
                 {

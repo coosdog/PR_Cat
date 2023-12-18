@@ -31,15 +31,15 @@ public class PlayerController : MonoBehaviour
         if (variableJoystick.Vertical != 0 || variableJoystick.Horizontal != 0)
         {
             Vector3 direction = cam.transform.localRotation * Vector3.forward * variableJoystick.Vertical +
-                cam.transform.localRotation * Vector3.right * variableJoystick.Horizontal; //1215 Ä«¸Þ¶ó¹æÇâÀ¸·Î ¼öÁ¤ À¯´ë¼±
+                cam.transform.localRotation * Vector3.right * variableJoystick.Horizontal; //1215 Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë¼±
             direction.y = 0f;
             direction = direction.normalized;
             rb.AddForce(direction * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
 
-            this.transform.rotation = Quaternion.LookRotation(direction);//1215 Ä«¸Þ¶ó¹æÇâÀ¸·Î ¼öÁ¤ À¯´ë¼±
+            this.transform.rotation = Quaternion.LookRotation(direction);//1215 Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë¼±
             if (Vector3.Magnitude(direction) <= 0.5)
             {
-                animator.SetFloat("RelativeSpeed", 0.5f);   //Á¶ÀÌ½ºÆ½ º¤ÅÍ Å©±â¿¡ µû¸¥ ¾Ö´Ï¸ÞÀÌ¼Ç º¯°æ 1206¼öºó
+                animator.SetFloat("RelativeSpeed", 0.5f);   //ï¿½ï¿½ï¿½Ì½ï¿½Æ½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ 1206ï¿½ï¿½ï¿½ï¿½
             }
             else
             {
