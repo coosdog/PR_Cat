@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Temp;
 using UnityEngine;
 
 namespace JongWoo
 {
     public class Bullet_Mechanism : MonoBehaviour
     {
-        //부렛또노 스피도
         public float speed = 15f;
         //파티클이펙트 발생시 거리조절용 변수
         public float distance = 0f;
@@ -47,12 +47,14 @@ namespace JongWoo
             rb.velocity = transform.forward * speed;
         }
 
+
         void OnCollisionEnter(Collision collision)
         {
-            if (collision.transform.TryGetComponent(out Player player))
+            if (collision.transform.TryGetComponent(out TestPlayer player))
             {
                 //기절게이지를 올리거나 등등등
             }
+            #region 내용정리1번
             //Debug.Log(collision.gameObject.name);
 
             //collision.contact[] & ContactPoint 관련 유니티 돜유먼ㅌ
@@ -64,31 +66,44 @@ namespace JongWoo
             //해당 방법을 이용해 충돌지점의 위치와 방향을 저장 => 파티클을 Instantiate 해서 피격 이펙트를 만들어냅니다!
 
             //1. 최초 충돌 지점의 정보 저장
+            #endregion
             ContactPoint contact = collision.GetContact(0);   //collision.GetContact() = collision.contacts[0]랑 같은 의미인데 주석대로 하면 메모리 낭비가 발생한다고 함!;
+            #region 내용정리2번
             //2. 총알의 Y축을 충돌체의 법선까지 회전시킨다! ==> 이러면 피격 파티클이 벽면에 겹치는 부분이 줄어들어서 이쁘게 나온대요,, 이해는 아직 덜 됨 
             //https://dallcom-forever2620.tistory.com/13
+            #endregion
             Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
 
+            #region 내용정리3번
             // Debug.Log(contact.point);
             // Debug.Log(contact.normal);
 
             //벡터의 좌표 = 충돌위치 + 법선의 방향*거리
             //거리가 길어질수록 닿은 위치로부터 이펙트가 터지는 거리가 멀어집니다!
+            #endregion
             Vector3 pos = contact.point + contact.normal * distance;
-            //Debug.Log(pos);
 
             if (hitParticle != null)
             {
                 GameObject hitInstance = Instantiate(hitParticle, pos, rot);
-
                 ParticleSystem hitTime = hitInstance.GetComponent<ParticleSystem>();
-
                 Destroy(hitInstance, hitTime.main.duration);
             }
             inter.Interact(collision);
             Destroy(gameObject);
         }
 
+       
+
+        public void Attack(IHitable hitable)
+        {
+            if(hitable == null) return;
+            
+            if(hitable!=null)
+            {
+              //hitable
+            }
+        }
     }
 
 
