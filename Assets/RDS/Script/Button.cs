@@ -9,7 +9,7 @@ public class Button : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<Player>() != null)
+        if(other.GetComponent<Temp.TestPlayer>() != null)
         {
             Debug.Log("µé¾î¿È");
             for(int i = 0; i < Maker.Length; i++) 
@@ -28,7 +28,7 @@ public class Button : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Player>() != null)
+        if (other.GetComponent<Temp.TestPlayer>() != null)
         {
             for (int i = 0; i < Maker.Length; i++)
             {

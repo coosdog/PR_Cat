@@ -8,6 +8,7 @@ public interface IActiveable()
 
 }
 */
+/*
 namespace JongWoo
 {
 
@@ -15,17 +16,20 @@ namespace JongWoo
     {
         bool isCool = true;
 
-
+        /*
         public override void Use()
         {
             //StartCoroutine(ShootCol());
             Instantiate(bullet, shotPoint.transform.position, shotPoint.transform.rotation);
         }
-
+        */
+        /*
         #region 발사 실험용, 나중에 지울것!
         private void Update() { if (Input.GetKeyDown(KeyCode.Z)) { Use(); } }
         #endregion
+        */
 
+        /*
         IEnumerator ShootCol()
         {
             Instantiate(bullet, shotPoint.transform.position, shotPoint.transform.rotation);
@@ -37,10 +41,5 @@ namespace JongWoo
             yield return null;
             isCool = true;
         }
+        */
 
-    }
-
-
-
-
-}

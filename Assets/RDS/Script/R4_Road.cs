@@ -13,7 +13,7 @@ public class R4_Road : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<Player>() != null)
+        if(other.GetComponent<Temp.TestPlayer>() != null)
         {
             other.transform.position = ReLocate;
         }
