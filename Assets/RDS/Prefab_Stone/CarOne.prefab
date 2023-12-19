@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c7ded1f60ee1f4f80a616e3ae16566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carAudio: {fileID: 8300000, guid: 2b6941dcb94a22a4b8a249dcb916d8de, type: 3}
 --- !u!114 &-1473569044272392641
 MonoBehaviour:
   m_ObjectHideFlags: 0

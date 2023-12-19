@@ -8,7 +8,13 @@ public class CarMove : MonoBehaviour
 {
     int moveSpeed = 30;
     int attackPower = 1000;
+    public AudioClip carAudio;
     // Update is called once per frame
+    private void Start()
+    {
+        //SoundManager.instance.Play(carAudio, this.transform);
+    }
+
     void Update()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed, Space.Self);

@@ -6,7 +6,12 @@ using JongWoo;
 public class Button : MonoBehaviour
 {
     public CreateCar[] Maker = new CreateCar[2];
+    
 
+    private void Start()
+    {
+        //SC.audioSource.loop = true;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.GetComponent<Temp.TestPlayer>() != null)

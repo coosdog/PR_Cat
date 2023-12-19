@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class Bounce : MonoBehaviour
 {
+    public AudioClip stoneAudio;
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        //SoundManager.instance.Play(stoneAudio, this.transform);
     }
 
     // Update is called once per frame
