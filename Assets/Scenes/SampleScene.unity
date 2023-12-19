@@ -987,9 +987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898b5de5ea2e75e45b1d3425f6fe69a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunGage: 0
-  atkSpeed: 0
-  owner: {fileID: 0}
 --- !u!114 &906300123 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3881087803549984439, guid: ec536a7718376554185e4a856d5ae230, type: 3}

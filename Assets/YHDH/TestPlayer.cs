@@ -56,7 +56,7 @@ namespace Temp
     {
         public override void Action(IAnimationable animationable)
         {
-            animationable.Animator.SetTrigger("IsAttack"); // ���߿� �ָ����� �ٲܰ�
+            animationable.Animator.SetTrigger("IsAttack"); // ���߿� �ָ����� �ٲܰ�            
         }
         public override void Attack(TestPlayer player)
         {            
@@ -116,8 +116,7 @@ namespace Temp
         }
     }
     public interface IHitable
-    {
-        // public Data D { get; set; }
+    {        
         public GameObject Obj { get; }
         public void Hit(IAttackable attackable);
     }
@@ -180,20 +179,11 @@ namespace Temp
         public GameObject Obj
         {
             get => gameObject;
-        }
-        
-
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                UseStrategy();
-            }
-        }
+        }            
 
         public void UseStrategy()
         {            
-            if(BtnInteraction()) // isUse�� false�϶���
+            if(BtnInteraction()) 
                 return;            
             curWeapon.Strategy.Action(animComponent);
         }
@@ -204,29 +194,26 @@ namespace Temp
             if (col == null || IsUse)
                 return false;
             Item item = col.GetComponent<Item>();
-            if (item.weapon != null) // �̹� �����ְ� �ִ� �������̶��
+            if (item.weapon != null) 
                 return false;
             SetWeapon(col, item);
             return true;
         }
 
         public void SetWeapon(Collider col, Item item)
-        {
-            Debug.Log("�ٽ�ã��������");
+        {            
             item.weapon = curWeapon;
-
             item.weapon.owner = this;
-
             curWeapon.Strategy = item.strategy;
             item.grabPoint.transform.SetParent(weaponSpot);
             item.grabPoint.transform.position = weaponSpot.position;
             item.grabPoint.transform.rotation = weaponSpot.rotation;
             animComponent.CurItem = item;
+            IsUse = true;
             if (item is LongAttackItem)
             {
                 GetProjectile((LongAttackItem)item);                
             }
-            IsUse = true;
         }
 
         public Collider SearchItem()
@@ -241,12 +228,8 @@ namespace Temp
 
         public void Drop()
         {
-            if (curWeapon.Strategy == Item.weaponDic[Item.WEAPON_TYPE.DEFAULT])
-            {
-                Debug.Log("�������");
-                return;
-            }
-            //obj.GetComponent<Collider>().enabled = true;
+            if (curWeapon.Strategy is DefaultStrategy)
+                return;            
             curWeapon.transform.GetChild(0).transform.SetParent(null); // ����
             IsUse = false;            
             animComponent.CurItem = null;
@@ -296,7 +279,6 @@ namespace Temp
             // attackable.SpawnEffect();
         }        
     }
-
 }
 
 

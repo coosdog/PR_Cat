@@ -32,10 +32,8 @@ namespace Temp
                 }
             }
         }
-        private Item curItem;
-
-        
-        private Collider attackCol;
+        private Item curItem;        
+        private Collider attackCol;        
 
         private void Start()
         {
