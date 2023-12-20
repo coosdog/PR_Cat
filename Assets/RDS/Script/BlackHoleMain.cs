@@ -7,23 +7,26 @@ using UnityEngine;
 public class BlackHoleMain : MonoBehaviour
 {
     public Light Wanning;
+    public bool isDanger = false;
+    public BGM bgm;
+    public AudioClip EmergencyBGM;
+    public AudioClip Wind;
 
     float nowTime = 0;
     float holeTime = 5;
     float holePower = 1;
     float holeRadius = 25;
+    int dangerCount = 0;
     //Vector3 targetPoint;
     IEnumerator blackHoleCo;
     [SerializeField] Vector3 holePos;
     Collider[] cols;
     List<Collider> colliders;
-    AudioSource audio;
     Color wanningColor;
 
     void Start()
     {
         wanningColor = Color.red;
-        audio = GetComponent<AudioSource>();
         holePos = transform.position - 2 * Vector3.up;
         blackHoleCo = BlackHoleCo();
         StartCoroutine(blackHoleCo);
@@ -32,8 +35,9 @@ public class BlackHoleMain : MonoBehaviour
     {
         if(holePower > 1)
         {
+            isDanger = true;
+            DangerSound();
             Wanning.color = wanningColor;
-            audio.enabled = true;
             Wanning.transform.Rotate(Vector3.left);
         }
     }
@@ -56,6 +60,22 @@ public class BlackHoleMain : MonoBehaviour
             ReSetColArr(cols);
             holePower++;
             nowTime = 0; // 진행 현재시간 초기화
+        }
+    }
+
+    void DangerSound()
+    {
+        if (dangerCount > 1)
+        {
+            Debug.Log("댄저리턴");
+            return;
+
+        }
+        if (isDanger)
+        {
+            Debug.Log("체인지");
+            bgm.ExchangeBGM(false, EmergencyBGM);
+            dangerCount++;
         }
     }
 
