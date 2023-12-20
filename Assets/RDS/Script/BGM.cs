@@ -7,12 +7,15 @@ public class BGM : MonoBehaviour
     public AudioClip Bgm;
     void Start()
     {
-        SoundManager.instance.Play(Bgm, this.transform, false);
+        SoundManager.instance.Play(Bgm, this.transform, true);
     }
     public void ExchangeBGM(bool isloop , AudioClip NextAudio = null )
     {
-        Debug.Log("ÀÌ¸ö ¹ßµ¿");
         SoundManager.instance.RetrunPool(GetComponentInChildren<SoundComponet>().gameObject);
         SoundManager.instance.Play(NextAudio, this.transform,isloop);
+    }
+    public void RemoveBGM()
+    {
+        SoundManager.instance.RetrunPool(GetComponentInChildren<SoundComponet>().gameObject);
     }
 }
