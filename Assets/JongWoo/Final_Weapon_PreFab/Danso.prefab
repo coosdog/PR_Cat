@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3323731697709488894}
   - component: {fileID: 7875003395216543491}
   - component: {fileID: 104810388702292219}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Danso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
