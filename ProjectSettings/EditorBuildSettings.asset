@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/BlackHole.unity
     guid: b62eecd947f12c44fab065a55a7c5769
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
-    guid: f2464497474aef14bb61b07197a05267
+    path: Assets/Scenes/RollingStone.unity
+    guid: 4274c1680857221438e40b1603855f13
   - enabled: 1
     path: Assets/Scenes/Monster.unity
     guid: 69e764221f495e94cb2084b63ef8f417
