@@ -12,10 +12,13 @@ namespace Temp
         }
         public int Atk => atk;
 
-        public GameObject EffectParticle => effectParticle;
-        [SerializeField] GameObject effectParticle;
+        public GameObject EffectParticle => effectParticle_Fire;
+        [SerializeField] GameObject effectParticle_Fire;
+        [SerializeField] GameObject effectParticle_Hit;
+        public GameObject EffectParticle_Hit => effectParticle_Hit;
 
-        private int atk;
+        protected int atk;
+        protected int fireSpeed;
 
         public abstract void Attack(TestPlayer player, Vector3 attackerPos);
 

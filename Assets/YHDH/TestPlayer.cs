@@ -146,7 +146,7 @@ namespace Temp
         
         public Weapon curWeapon;
         public Transform weaponSpot;
-        private AnimationComponent animComponent;
+        public AnimationComponent animComponent;
         private Item curItem;
         [SerializeField] bool isGrab;
 
