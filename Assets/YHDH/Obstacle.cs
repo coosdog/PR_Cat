@@ -15,15 +15,14 @@ namespace Temp
         {
             if (other.TryGetComponent(out IAttackable attackable))
             {                
-                Hit(attackable);
+                Hit(attackable, other.transform.position);
             }
         }
-        public void Hit(IAttackable attackable)
+        public void Hit(IAttackable attackable, Vector3 attackerPos)
         {
             obstacleHp -= attackable.Atk;
             attackable.SpawnEffect();
         }
-
 
     }
 

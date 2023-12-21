@@ -14,7 +14,7 @@ namespace Temp
             pc.Speed = defalutSpeed;
         }
 
-        public override void Attack(TestPlayer player)
+        public override void Attack(TestPlayer player, Vector3 attackerPos)
         {
             PlayerController pc = player.GetComponent<PlayerController>();
             StartCoroutine(StartColdCo(pc));
