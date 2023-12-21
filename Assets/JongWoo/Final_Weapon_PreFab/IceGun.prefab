@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2194316835128081076}
   - component: {fileID: 1417417058765727973}
   - component: {fileID: 203684334598314977}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: IceGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
-  m_UseLocal: 1
+  m_UseLocal: 0
 --- !u!54 &203684334598314977
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 2736151648696183567}
   - component: {fileID: 5006436774457117710}
   - component: {fileID: 8680784727085932900}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShotPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
