@@ -18,7 +18,7 @@ public class Bounce : MonoBehaviour
     void Update()
     {
 
-        transform.Translate(Vector3.forward * 3f * Time.deltaTime,Space.World);
+        transform.Translate(Vector3.forward * 4f * Time.deltaTime,Space.World);
         transform.Rotate(new Vector3(0, -1, 0));
     }
 

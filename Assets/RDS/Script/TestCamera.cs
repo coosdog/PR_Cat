@@ -9,6 +9,7 @@ public class TestCamera : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector3(0, 8, player.transform.position.z - 10);
+        transform.position = new Vector3(0, 5, player.transform.position.z - 10);
+        transform.rotation = Quaternion.Euler(5,0,0);
     }
 }

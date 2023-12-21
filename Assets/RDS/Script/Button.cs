@@ -31,6 +31,7 @@ public class Button : MonoBehaviour
             }
         }
     }
+    /*
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<Temp.TestPlayer>() != null)
@@ -42,4 +43,5 @@ public class Button : MonoBehaviour
             }
         }
     }
+    */
 }
