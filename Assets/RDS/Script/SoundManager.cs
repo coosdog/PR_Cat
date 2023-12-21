@@ -1,22 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public interface ISM
 {
-    public static SoundManager instance = null;
+    //AudioClip clip { get; }
+}
+
+public class SoundManager : Singleton<SoundManager>
+{
+    //public static SoundManager instance = null;
     public GameObject soundComponetPrefab;
     public Queue<GameObject> pool = new Queue<GameObject>();
 
+    public AudioClip testclip;
+
     private void Awake()
     {
+        base.Awake();
+        Init();
+    }
+    private void Start()
+    {
+        /*
         if (instance == null)
             instance = this;
         else
             Destroy(gameObject);
-
-        Init();
+        */
+        //Init();
     }
+
     public void Init()
     {
         for (int i = 0; i < 10; i++)
@@ -39,11 +54,22 @@ public class SoundManager : MonoBehaviour
         return pool.Dequeue().GetComponent<SoundComponet>();
     }
 
-    public void Play(AudioClip clip,Transform target = null)
+    public void Play(AudioClip clip, Transform target, bool loop)
     {
+        if (pool.Count <= 2)
+        {
+            Init();
+        }
         SoundComponet temp = Pop();
         temp.transform.parent = target;
-        temp.Play(clip);
+        temp.transform.position = target.transform.position;
+        temp.Play(clip,loop);
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            instance.Play(testclip,this.transform, true);
+        }
+    }
 }

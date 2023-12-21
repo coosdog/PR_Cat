@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainLobby.unity
+    guid: 43d9f45c594ca4945aa2e862a4631df8
+  - enabled: 1
+    path: Assets/Scenes/WaitRoom.unity
+    guid: bf11776b8c1fd854abea930f26945580
+  - enabled: 1
+    path: Assets/Scenes/BlackHole.unity
+    guid: b62eecd947f12c44fab065a55a7c5769
+  - enabled: 1
+    path: Assets/Scenes/RollingStone.unity
+    guid: 4274c1680857221438e40b1603855f13
+  - enabled: 1
+    path: Assets/Scenes/Monster.unity
+    guid: 69e764221f495e94cb2084b63ef8f417
   m_configObjects: {}

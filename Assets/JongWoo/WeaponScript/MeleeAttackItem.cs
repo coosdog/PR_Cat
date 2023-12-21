@@ -6,15 +6,15 @@ namespace Temp
 {
     public class MeleeAttackItem : Item, IAttackable
     {
-        public float Atk => weapon.Atk;
+        public int Atk => weapon.Atk;
 
         public GameObject EffectParticle => weapon.EffectParticle;
 
-        public void Attack(TestPlayer player)
+        public void Attack(TestPlayer player, Vector3 attackerPos)
         {
             if (weapon == null)
                 return;            
-            weapon.Attack(player);
+            weapon.Attack(player, attackerPos);
         }
 
         public void SpawnEffect()

@@ -13,7 +13,7 @@ namespace Temp
         {
             rb = GetComponent<Rigidbody>();
         }
-        public void Hit(IAttackable attackable)
+        public void Hit(IAttackable attackable, Vector3 attackerPos)
         {
             rb.AddForce(Vector3.forward * 10f, ForceMode.Impulse);
         }
@@ -22,7 +22,7 @@ namespace Temp
         {
             if (other.TryGetComponent(out IAttackable attackable))
             {
-                Hit(attackable);
+                Hit(attackable, other.transform.position);
             }
         }
     }

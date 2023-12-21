@@ -9,7 +9,7 @@ public class CreateCar : MonoBehaviour
     public float CreatCoolTime;
     void Start()
     {
-        StartMake();
+        //StartMake();
     }
 
     public void CarMake()

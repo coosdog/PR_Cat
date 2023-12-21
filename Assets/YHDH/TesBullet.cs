@@ -10,14 +10,14 @@ namespace Temp
         {
             // transform.Translate(transform.forward * 1f);
         }
-        public float Atk => atk;
+        public int Atk => atk;
 
         public GameObject EffectParticle => effectParticle;
         [SerializeField] GameObject effectParticle;
 
-        private float atk;
+        private int atk;
 
-        public abstract void Attack(TestPlayer player);
+        public abstract void Attack(TestPlayer player, Vector3 attackerPos);
 
         public abstract void SpawnEffect();
     }

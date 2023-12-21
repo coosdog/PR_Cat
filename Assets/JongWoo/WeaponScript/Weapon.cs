@@ -30,7 +30,7 @@ namespace Temp
         private AttackStrategy strategy;
         
 
-        public float Atk => mst.Atk;
+        public int Atk => mst.Atk;
 
         public GameObject EffectParticle => mst.EffectParticle;
 
@@ -42,11 +42,11 @@ namespace Temp
             mst.SpawnEffect();
         }        
 
-        public void Attack(Temp.TestPlayer player)
+        public void Attack(Temp.TestPlayer player, Vector3 attackerPos)
         {
             if (mst != null)
             {
-                mst.Attack(player);
+                mst.Attack(player, attackerPos);
             }
         }
 

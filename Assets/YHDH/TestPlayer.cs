@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using JongWoo;
 using UnityEngine.UIElements;
-
-// �÷��̾�� ���� �Ѵ� �¾��� �� ����ó���ϵ��� �������̽��� ����� ����
-
-// ����(�������̽�) ȿ��(�������̽�) ������ ��
+using Photon.Pun;
+using Photon.Pun.Demo.Cockpit;
 
 namespace Temp
 {
@@ -17,23 +15,22 @@ namespace Temp
 
     public interface IAttackable
     {
-        public float Atk { get; }
+        public int Atk { get; }
         public GameObject EffectParticle { get; }
         public void SpawnEffect(); 
-        public void Attack(TestPlayer player); // �÷��̾�� ȿ���� �� �������̽� ���
-
-        
+        public void Attack(TestPlayer player, Vector3 attackerPos);
     }
-
+    
     public abstract class AttackStrategy : IActionable
     {
         public abstract void Action(IAnimationable animationable);
+
     }
 
     public abstract class MeleeAttackStrategy : AttackStrategy, IAttackable
     {        
-        public float Atk => atk;
-        private float atk = 10;
+        public int Atk => atk;
+        private int atk = 10;
         public LayerMask Layer;
 
         //public void SetLayer(LayerMask layer)
@@ -44,12 +41,12 @@ namespace Temp
         public GameObject EffectParticle => throw new System.NotImplementedException();
         [SerializeField] private GameObject effectParticle;
 
-        public abstract void Attack(TestPlayer player);
+        public abstract void Attack(TestPlayer player, Vector3 attackerPos);
 
         public void SpawnEffect()
         {
             throw new System.NotImplementedException();
-        }        
+        }
     }
 
     public class DefaultStrategy : MeleeAttackStrategy
@@ -58,11 +55,15 @@ namespace Temp
         {
             animationable.Animator.SetTrigger("IsAttack"); // ���߿� �ָ����� �ٲܰ�            
         }
-        public override void Attack(TestPlayer player)
-        {            
-            // �ָ԰���
-            // �������� �ø���
+        public override void Attack(TestPlayer player, Vector3 attackerPos)
+        {
+            Vector3 dir = (player.transform.position - attackerPos).normalized;
+            Debug.Log(dir);
+            player.GetComponent<Rigidbody>().AddForce(dir * 100f, ForceMode.Impulse);
+            Debug.Log("공격처리됨");
         }
+
+
     }
 
     public class SwordStrategy : MeleeAttackStrategy
@@ -75,9 +76,10 @@ namespace Temp
         }
         
 
-        public override void Attack(TestPlayer player)
+        public override void Attack(TestPlayer player, Vector3 attackerPos)
         {
-            // ���� ȿ�� ���
+            Vector3 dir = (player.transform.position - attackerPos).normalized;
+            player.GetComponent<Rigidbody>().AddForce(dir * 100f, ForceMode.Impulse);
         }
     }
 
@@ -89,12 +91,12 @@ namespace Temp
         {
             animationable.Animator.SetTrigger("IsAttack");
         }
-
-
-        public override void Attack(TestPlayer player)
+        public override void Attack(TestPlayer player, Vector3 attackerPos)
         {
-            // ��Ʈ�� ȿ�� ���
-            Debug.Log("��Ʈ ȿ��");
+            player.StunCnt += 1;
+            Vector3 dir = (player.transform.position - attackerPos).normalized;
+            Debug.Log(dir);
+            player.GetComponent<Rigidbody>().AddForce(dir * 100f, ForceMode.Impulse);
         }
     }
 
@@ -118,7 +120,7 @@ namespace Temp
     public interface IHitable
     {        
         public GameObject Obj { get; }
-        public void Hit(IAttackable attackable);
+        public void Hit(IAttackable attackable, Vector3 attackerPos);
     }
     /*
     public class Weapon
@@ -139,15 +141,25 @@ namespace Temp
      }
     */
 
-    public class TestPlayer : MonoBehaviour, IHitable
+    public class TestPlayer : MonoBehaviourPun, IHitable, IPunObservable
     {       
-        public float stunCnt;
-        public Weapon curWeapon;        
+        
+        public Weapon curWeapon;
         public Transform weaponSpot;
         private AnimationComponent animComponent;
-
+        private Item curItem;
         [SerializeField] bool isGrab;
-      
+
+        [SerializeField] private int stunCnt;
+        public int StunCnt
+        {
+            get => stunCnt;
+            set
+            {
+                stunCnt = value;
+
+            }
+        }
         public bool IsUse
         {
             get => isUse;
@@ -166,105 +178,122 @@ namespace Temp
         {
             SetDefault();
             animComponent = GetComponent<AnimationComponent>();
-            PointHandler.grabAct += UseStrategy;
-            PointHandler.dropAct += Drop;
+            if (photonView.IsMine)
+            {
+                curItem = new Item();
+                
+                PointHandler.grabAct += () => { photonView.RPC("UseStrategy", RpcTarget.AllBuffered); };
+                PointHandler.dropAct += () => { photonView.RPC("Drop", RpcTarget.AllBuffered); };
+            }
         }
 
+        private void Update()
+        {
+
+        }
         public void SetDefault()
         {
             curWeapon.Strategy = Item.weaponDic[Item.WEAPON_TYPE.DEFAULT];
         }
 
-
         public GameObject Obj
         {
             get => gameObject;
-        }            
+        }
 
+        [PunRPC]
         public void UseStrategy()
-        {            
-            if(BtnInteraction()) 
-                return;            
+        {
+            // IsMine 테스트
+            //if (!photonView.IsMine)
+            //    return;
+
+            if (BtnInteraction())
+                return;
             curWeapon.Strategy.Action(animComponent);
         }
 
         public bool BtnInteraction()
-        {            
+        {
+            Debug.Log(photonView.IsMine);
             Collider col = SearchItem();
             if (col == null || IsUse)
                 return false;
-            Item item = col.GetComponent<Item>();
+            Item item = col.GetComponent<Item>();            
             if (item.weapon != null) 
                 return false;
-            SetWeapon(col, item);
+
+            curItem = item;
+            Debug.Log(item.name);
+            photonView.RPC("SetWeapon", RpcTarget.AllBuffered);
+            
+            // SetWeapon(item);
             return true;
         }
+                
+        [PunRPC]
+        public void SetWeapon()
+        {
+            Debug.Log(curItem.name);
+            Debug.Log("포톤뷰 ismine : " + photonView.IsMine);
+            //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.red;
+            curItem.grabPoint.transform.parent = weaponSpot;
+            curItem.grabPoint.localPosition = Vector3.zero;
+            curItem.grabPoint.localRotation = Quaternion.identity;
+            //curItem.grabPoint.transform.position = weaponSpot.position;
+            //curItem.grabPoint.transform.rotation = weaponSpot.rotation;
 
-        public void SetWeapon(Collider col, Item item)
-        {            
-            item.weapon = curWeapon;
-            item.weapon.owner = this;
-            curWeapon.Strategy = item.strategy;
-            item.grabPoint.transform.SetParent(weaponSpot);
-            item.grabPoint.transform.position = weaponSpot.position;
-            item.grabPoint.transform.rotation = weaponSpot.rotation;
-            animComponent.CurItem = item;
+
+            curItem.weapon = curWeapon;
+            curItem.weapon.owner = this;
+            curWeapon.Strategy = curItem.strategy;
+            // other.transform.parent = weaponSpot;
+
+            // curItem.grabPoint.transform.SetParent(weaponSpot);
+
+            animComponent.CurItem = curItem;
             IsUse = true;
-            if (item is LongAttackItem)
+            if (curItem is LongAttackItem)
             {
-                GetProjectile((LongAttackItem)item);                
+                GetProjectile((LongAttackItem)curItem);
             }
         }
-
+      
         public Collider SearchItem()
         {
-            Collider[] cols = Physics.OverlapSphere(transform.position, 2, 1<<7); // Item Layer�� ����
-            if(cols.Length > 0) // ���尡���� ó�����ٰ�
+            Collider[] cols = Physics.OverlapSphere(transform.position, 2, 1<<7);
+            if(cols.Length > 0)
             {                
                 return cols[0];
             }
             return null;
         }
 
+        [PunRPC]
         public void Drop()
         {
             if (curWeapon.Strategy is DefaultStrategy)
                 return;            
-            curWeapon.transform.GetChild(0).transform.SetParent(null); // ����
+            curWeapon.transform.GetChild(0).transform.SetParent(null);
             IsUse = false;            
             animComponent.CurItem = null;
         }
 
-
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out IAttackable attackable))
-            {
-                //if(attackable.Layer == myLayer)
-                //{
-                //    Hit(attackable);
-                //}
-                //attackable.Attack(this);
-                // �������̰ų� ���� ������ ������� ���԰�
-                // ������ ���̾�ų� ���� ���̾��� ������� ������
-
-                // �Ѿ�, ��������� IAttackable, IAttackable�� Ÿ�ٷ��̾ ������ �ְ�
-                // �׳��� ���̾ ������ �� ���̾�� �����ϸ� ������� �ִ� ����
-                // ������ �̿��Ҷ�
-                // �ڱ��ڽ��� Player��� ���̾�� �������� Enemy�� ������ ���� ��
-                // �� Enemy���忡�� �ڽ��� Player�� �������� Enemy���̾�� ó���� ���ٵ�
-                // ��� �ؾ��ϳ�?
-                // if(attackable is Weapon)
-                if (attackable is Weapon)
-                {
-                    if (((Weapon)attackable).owner == this)
-                        return;
-                }
-                Hit(attackable);
-            }            
+            stunCnt -= 1;
+            
+            //if (other.TryGetComponent(out IAttackable attackable))
+            //{                
+            //    if (attackable is Weapon)
+            //    {
+            //        if (((Weapon)attackable).owner == this)
+            //            return;
+            //    }
+            //    Hit(attackable, other.transform.position);
+            //}            
         }
         
-
         public void GetProjectile(LongAttackItem item)
         {
             GunStrategy gs = (GunStrategy)curWeapon.Strategy;
@@ -272,12 +301,25 @@ namespace Temp
             gs.shotPoint = item.shotPos;
         }
         
-        public void Hit(IAttackable attackable)
+        public void Hit(IAttackable attackable, Vector3 attackerPos)
         {
-            // stunCnt -= attackable.Atk;         
-            attackable.Attack(this);            
+            // stunCnt -= attackable.Atk;
+            attackable.Attack(this, attackerPos);
+
             // attackable.SpawnEffect();
-        }        
+        }
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
+            {
+                stream.SendNext(StunCnt);
+            }
+            else
+            {
+                StunCnt = (int)stream.ReceiveNext();
+            }
+        }
     }
 }
 

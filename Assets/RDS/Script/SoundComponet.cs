@@ -6,10 +6,11 @@ public class SoundComponet : MonoBehaviour
 {
     public AudioSource audioSource;
 
-    public void Play(AudioClip clip)
+    public void Play(AudioClip clip,bool loop)
     {
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = clip;
+        audioSource.loop = loop;
         audioSource.Play();
     }
     // Update is called once per frame
