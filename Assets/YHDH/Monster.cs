@@ -266,7 +266,7 @@ namespace Temp
             
         }
 
-        public override void Attack(TestPlayer player)
+        public override void Attack(TestPlayer player, Vector3 attackerPos)
         {
             Debug.Log("일반 공격");
             player.GetComponent<Rigidbody>().AddExplosionForce(10, Vector3.forward, 10);
@@ -280,7 +280,7 @@ namespace Temp
             
         }
 
-        public override void Attack(TestPlayer player)
+        public override void Attack(TestPlayer player, Vector3 attackerPos)
         {
             // 플레이어 사망 구현
         }
