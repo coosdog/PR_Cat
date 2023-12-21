@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Cinemachine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPun
 {
     public Camera cam;
+    public Canvas canvas;
+    public CinemachineFreeLook freeLook;
 
     [SerializeField] private float speed;
     public float Speed
@@ -24,6 +28,13 @@ public class PlayerController : MonoBehaviour
         float v = Input.GetAxis("Vertical");
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+
+        if (photonView.IsMine)
+        {
+            freeLook.enabled = true;
+            canvas.gameObject.SetActive(true);
+            cam = Camera.main;
+        }
     }
 
     public void FixedUpdate()
