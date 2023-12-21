@@ -4858,11 +4858,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1887302512045466}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15b3923646b3142479f1fbac76f5e323, type: 3}
+  m_Script: {fileID: 11500000, guid: e85e7e9563d998d48a1c0db2cb139f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectParticle_fire: {fileID: 1192148152262008, guid: 6cf7aefecf5476d4a9d31cf2b63c5a86, type: 3}
-  effectParticle_hit: {fileID: 1780996139795400, guid: 263ddbaf4628f7a47a74fa851d04f002, type: 3}
+  effectParticle_Fire: {fileID: 1192148152262008, guid: 6cf7aefecf5476d4a9d31cf2b63c5a86, type: 3}
+  effectParticle_Hit: {fileID: 1780996139795400, guid: 263ddbaf4628f7a47a74fa851d04f002, type: 3}
 --- !u!199 &199988492110645152
 ParticleSystemRenderer:
   serializedVersion: 6

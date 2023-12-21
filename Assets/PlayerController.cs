@@ -34,7 +34,8 @@ public class PlayerController : MonoBehaviour
                 cam.transform.localRotation * Vector3.right * variableJoystick.Horizontal; //1215 ī�޶�������� ���� ���뼱
             direction.y = 0f;
             direction = direction.normalized;
-            rb.AddForce(direction * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            this.transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);      //1213 조수빈(rigidbody 못써서 바꿈)
+            this.transform.rotation = Quaternion.Euler(0f, Mathf.Atan2(this.variableJoystick.Horizontal, this.variableJoystick.Vertical) * Mathf.Rad2Deg, 0f); //캐릭터 회전 1206수빈
 
             this.transform.rotation = Quaternion.LookRotation(direction);//1215 ī�޶�������� ���� ���뼱
             if (Vector3.Magnitude(direction) <= 0.5)
