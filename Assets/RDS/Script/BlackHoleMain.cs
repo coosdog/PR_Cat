@@ -46,7 +46,7 @@ public class BlackHoleMain : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(5f); // 홀이 열리는 주기(5초마다)
+            yield return new WaitForSeconds(10f); // 홀이 열리는 주기(5초마다)
             while (nowTime <= holeTime) // 홀타임동안 진행
             {
                 cols = Physics.OverlapSphere(holePos, holeRadius, 1 << 6 | 1 << 29);
