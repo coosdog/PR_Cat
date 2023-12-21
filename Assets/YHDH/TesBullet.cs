@@ -12,8 +12,10 @@ namespace Temp
         }
         public int Atk => atk;
 
-        public GameObject EffectParticle => effectParticle;
-        [SerializeField] GameObject effectParticle;
+        public GameObject EffectParticle => effectParticle_Fire;
+        [SerializeField] GameObject effectParticle_Fire;
+        [SerializeField] GameObject effectParticle_Hit;
+        public GameObject EffectParticle_Hit => effectParticle_Hit;
 
         protected int atk;
         protected int fireSpeed;

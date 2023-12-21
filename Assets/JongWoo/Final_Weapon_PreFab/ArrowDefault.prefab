@@ -94,11 +94,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 429543989968508660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35eb271989896444dab66d469788010f, type: 3}
+  m_Script: {fileID: 11500000, guid: d20d98c92a52a3a45aa3c78399de793d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectParticle_fire: {fileID: 0}
-  effectParticle_hit: {fileID: 0}
+  effectParticle: {fileID: 0}
 --- !u!65 &4729859936825705440
 BoxCollider:
   m_ObjectHideFlags: 0
