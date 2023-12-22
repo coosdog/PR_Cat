@@ -213,6 +213,9 @@ namespace Temp
             if (col == null || IsUse)
                 return false;
             Item item = col.GetComponent<Item>();            
+
+
+
             if (item.weapon != null) 
                 return false;
 
@@ -282,11 +285,7 @@ namespace Temp
                 {
                     if (((Weapon)attackable).owner == this)
                         return;
-<<<<<<< HEAD
                 }
-=======
-               }
->>>>>>> 600c9663bbc56ad7f857bee270e44f10289ff1f6
                 Hit(attackable, other.transform.position);
             }            
         }

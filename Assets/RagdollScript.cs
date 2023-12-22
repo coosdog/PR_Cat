@@ -52,6 +52,7 @@ public class RagdollScript : MonoBehaviourPun
         _player.GetComponent<Collider>().enabled = true;
         _player.GetComponent<Rigidbody>().useGravity = true;
         _player.GetComponent<Rigidbody>().isKinematic = true;
+        _playerController.freeLook.enabled = true;
 
 
         _animator.enabled = true;
@@ -76,6 +77,7 @@ public class RagdollScript : MonoBehaviourPun
         }
         _player.GetComponent<Rigidbody>().useGravity = false;
         _player.GetComponent<Collider>().enabled = false;
+        _playerController.freeLook.enabled = false;
 
         _animator.enabled = false;
         _playerController.enabled = false;
