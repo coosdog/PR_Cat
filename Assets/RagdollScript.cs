@@ -29,6 +29,8 @@ public class RagdollScript : MonoBehaviourPun
     [SerializeField]
     private TestPlayer _player;
 
+    Vector3 origin;
+
     void Awake()
     {
         _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
@@ -52,7 +54,7 @@ public class RagdollScript : MonoBehaviourPun
         _player.GetComponent<Collider>().enabled = true;
         _player.GetComponent<Rigidbody>().useGravity = true;
         _player.GetComponent<Rigidbody>().isKinematic = true;
-        _playerController.freeLook.enabled = true;
+        _playerController.freeLook.transform.position = origin;
 
 
         _animator.enabled = true;
@@ -71,13 +73,15 @@ public class RagdollScript : MonoBehaviourPun
 
     private void EnableRagdoll()
     {
+        origin = _playerController.freeLook.transform.position;
         foreach (var rigidbody in _ragdollRigidbodies)
         {
             rigidbody.isKinematic = false;
         }
         _player.GetComponent<Rigidbody>().useGravity = false;
         _player.GetComponent<Collider>().enabled = false;
-        _playerController.freeLook.enabled = false;
+        _playerController.freeLook.transform.position = gameObject.transform.position;
+
 
         _animator.enabled = false;
         _playerController.enabled = false;

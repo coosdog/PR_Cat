@@ -8,7 +8,7 @@ public class MoneStartScene : MonoBehaviour
 {
      CinemachineDollyCart dolly;
      CinemachineVirtualCamera vCam;
-    public Monster monmon;
+    //public Monster monmon;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class MoneStartScene : MonoBehaviour
         if(dolly.m_Position > 86)
         {
             vCam.Priority = 0;
-            monmon.GetComponent<Monster>().enabled = true;
+            //monmon.GetComponent<Monster>().enabled = true;
             this.gameObject.SetActive(false);
         }
     }

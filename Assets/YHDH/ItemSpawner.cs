@@ -34,6 +34,11 @@ namespace Temp
                 StartCoroutine(spawnCo);
             else
                 OnceSpawn();
+            if(stageType == STAGE_TYPE.MONSTER && PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.Instantiate("Monster", new Vector3(0, 1, 0), Quaternion.identity);
+            }
+            
         }             
 
         IEnumerator SpawnCo()
