@@ -13,9 +13,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         //if (!photonView.IsMine)
-        //    return;
-
-        onGameStart += () => { PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity); };
+        //    return;        
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode lsm) => { GameStart(); };
     }
     

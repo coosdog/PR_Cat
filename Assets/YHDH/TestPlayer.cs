@@ -270,7 +270,7 @@ namespace Temp
         {
             if (curWeapon.Strategy is DefaultStrategy)
                 return;            
-            curWeapon.transform.GetChild(0).transform.SetParent(null);
+            curWeapon.transform.GetChild(0).GetChild(0).transform.SetParent(null);
             IsUse = false;            
             animComponent.CurItem = null;
         }
