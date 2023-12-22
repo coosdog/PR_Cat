@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Temp;
+using Photon.Pun;
 
-public class RagdollScript : MonoBehaviour
+public class RagdollScript : MonoBehaviourPun
 {
     private enum CatState
     {
@@ -34,15 +35,16 @@ public class RagdollScript : MonoBehaviour
         _animator = GetComponent<Animator>();
         _hipsBone = _animator.GetBoneTransform(HumanBodyBones.Hips);
 
-
-        WalkingBehaviour();
+        photonView.RPC("WalkingBehaviour",RpcTarget.AllBuffered);
     }
 
 
     void Update()
     {
         if (_currentState == CatState.Ragdoll)
-            RagdollBehaviour();
+            photonView.RPC("RagdollBehaviour", RpcTarget.AllBuffered);
+
+        //RagdollBehaviour();
     }
 
     private void DisableRagdoll()
@@ -50,14 +52,18 @@ public class RagdollScript : MonoBehaviour
         _player.GetComponent<Collider>().enabled = true;
         _player.GetComponent<Rigidbody>().useGravity = true;
         _player.GetComponent<Rigidbody>().isKinematic = true;
+        _playerController.freeLook.enabled = true;
 
 
         _animator.enabled = true;
         _playerController.enabled = true;
         _player.enabled = true;
     }
+
+    [PunRPC]
     public void WalkingBehaviour()
     {
+        Debug.Log("랙돌시작");
         EnableRagdoll();
         _currentState = CatState.Ragdoll;
         _timeToWakeUp = 3.0f;
@@ -71,6 +77,7 @@ public class RagdollScript : MonoBehaviour
         }
         _player.GetComponent<Rigidbody>().useGravity = false;
         _player.GetComponent<Collider>().enabled = false;
+        _playerController.freeLook.enabled = false;
 
         _animator.enabled = false;
         _playerController.enabled = false;
@@ -81,6 +88,7 @@ public class RagdollScript : MonoBehaviour
 
     Quaternion startQuaternion;
     bool isCheck;
+    [PunRPC]
     private void RagdollBehaviour()
     {
         _timeToWakeUp -= Time.deltaTime;

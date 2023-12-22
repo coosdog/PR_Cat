@@ -47,7 +47,7 @@ public class CarMove : MonoBehaviour, IAttackable
         //Vector3 dir = Vector3.forward;
         Vector3 dir = (player.transform.position - (Vector3.back * 10)).normalized;
         //dir = dir + (player.transform.position - attackerPos).normalized;
-        player.StunCnt -= Atk;
+        player.StunCnt += Atk;
         player.GetComponent<Rigidbody>().AddForce(dir * Atk, ForceMode.Impulse);
     }
 }

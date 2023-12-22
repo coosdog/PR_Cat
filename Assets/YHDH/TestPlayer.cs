@@ -5,6 +5,7 @@ using JongWoo;
 using UnityEngine.UIElements;
 using Photon.Pun;
 using Photon.Pun.Demo.Cockpit;
+using Cinemachine;
 
 namespace Temp
 {
@@ -33,11 +34,6 @@ namespace Temp
         private int atk = 10;
         public LayerMask Layer;
 
-        //public void SetLayer(LayerMask layer)
-        //{
-        //    Layer = layer;
-        //}
-
         public GameObject EffectParticle => throw new System.NotImplementedException();
         [SerializeField] private GameObject effectParticle;
 
@@ -51,12 +47,14 @@ namespace Temp
 
     public class DefaultStrategy : MeleeAttackStrategy
     {
+        private int DebuffCnt = 5;
         public override void Action(IAnimationable animationable)
         {
             animationable.Animator.SetTrigger("IsAttack"); // ���߿� �ָ����� �ٲܰ�            
         }
         public override void Attack(TestPlayer player, Vector3 attackerPos)
         {
+            player.StunCnt += (Atk- DebuffCnt);
             Vector3 dir = (player.transform.position - attackerPos).normalized;
             Debug.Log(dir);
             player.GetComponent<Rigidbody>().AddForce(dir * 100f, ForceMode.Impulse);
@@ -93,7 +91,7 @@ namespace Temp
         }
         public override void Attack(TestPlayer player, Vector3 attackerPos)
         {
-            player.StunCnt += 1;
+            player.StunCnt += Atk;
             Vector3 dir = (player.transform.position - attackerPos).normalized;
             Debug.Log(dir);
             player.GetComponent<Rigidbody>().AddForce(dir * 100f, ForceMode.Impulse);
@@ -122,24 +120,6 @@ namespace Temp
         public GameObject Obj { get; }
         public void Hit(IAttackable attackable, Vector3 attackerPos);
     }
-    /*
-    public class Weapon
-    {
-        public IAttackable attackStrategy;
-        public AttackStrategy strategy;
-    }
-    */
-    /*
-     public class Gun: Weapon
-     {
-         public GunStrategy gunStrategy;
-
-         public void GunStrategyAction()
-         {
-             gunStrategy.Action();
-         }
-     }
-    */
 
     public class TestPlayer : MonoBehaviourPun, IHitable, IPunObservable
     {       
@@ -150,6 +130,8 @@ namespace Temp
         private Item curItem;
         [SerializeField] bool isGrab;
 
+
+        RagdollScript doll;
         [SerializeField] private int stunCnt;
         public int StunCnt
         {
@@ -157,7 +139,11 @@ namespace Temp
             set
             {
                 stunCnt = value;
-
+                if(StunCnt > 0)
+                {
+                    photonView.RPC("RagdolWalk", RpcTarget.AllBuffered);
+                    StunCnt = 0;
+                }
             }
         }
         public bool IsUse
@@ -176,6 +162,7 @@ namespace Temp
 
         private void Start()
         {
+            doll = GetComponent<RagdollScript>();
             SetDefault();
             animComponent = GetComponent<AnimationComponent>();
             if (photonView.IsMine)
@@ -186,6 +173,12 @@ namespace Temp
                 PointHandler.dropAct += () => { photonView.RPC("Drop", RpcTarget.AllBuffered); };
             }
         }
+
+        [PunRPC]                
+        public void RagdolWalk()
+        {
+            doll.WalkingBehaviour();
+        }        
 
         private void Update()
         {
@@ -220,6 +213,9 @@ namespace Temp
             if (col == null || IsUse)
                 return false;
             Item item = col.GetComponent<Item>();            
+
+
+
             if (item.weapon != null) 
                 return false;
 
@@ -289,7 +285,7 @@ namespace Temp
                 {
                     if (((Weapon)attackable).owner == this)
                         return;
-               }
+                }
                 Hit(attackable, other.transform.position);
             }            
         }
