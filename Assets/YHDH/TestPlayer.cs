@@ -281,17 +281,17 @@ namespace Temp
 
         private void OnTriggerEnter(Collider other)
         {
-            stunCnt -= 1;
+            //stunCnt -= 1;
             
-            //if (other.TryGetComponent(out IAttackable attackable))
-            //{                
-            //    if (attackable is Weapon)
-            //    {
-            //        if (((Weapon)attackable).owner == this)
-            //            return;
-            //    }
-            //    Hit(attackable, other.transform.position);
-            //}            
+            if (other.TryGetComponent(out IAttackable attackable))
+            {                
+                if (attackable is Weapon)
+                {
+                    if (((Weapon)attackable).owner == this)
+                        return;
+               }
+                Hit(attackable, other.transform.position);
+            }            
         }
         
         public void GetProjectile(LongAttackItem item)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Temp;
 using UnityEngine;
 
 public class MovingTrap : MonoBehaviour
@@ -10,6 +11,7 @@ public class MovingTrap : MonoBehaviour
     public bool isTest;
     public bool isPM;
     int moveSpeed = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,9 +74,6 @@ public class MovingTrap : MonoBehaviour
                 }
             }
         }
-
-
-
-
     }
+
 }

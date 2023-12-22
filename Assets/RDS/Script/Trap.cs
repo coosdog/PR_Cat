@@ -1,40 +1,37 @@
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
+using Temp;
 using UnityEngine;
 
-public abstract class TrapMode
-{
-    protected Trap owner;
-    public TrapMode(Trap trap)
-    {
-        owner = trap;
-    }
-    public abstract void Function();
-}
-public class ST_CrossWalk : TrapMode
-{
-    public ST_CrossWalk(Trap trap) : base(trap) { }
-    public override void Function()
-    {
-        throw new System.NotImplementedException();
-    }
-}
-public enum TrapType
-{
-    ST_CrossWalk = 1<<0
-}
 
-public class Trap : MonoBehaviour
+public class Trap : MonoBehaviour, IAttackable
 {
-    // Start is called before the first frame update
-    void Start()
+    MovingTrap CheckMoving;
+    public int AttackDamege;
+    public int Atk => AttackDamege;
+
+    private void Start()
     {
-        
+        CheckMoving = GetComponentInParent<MovingTrap>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject EffectParticle => throw new System.NotImplementedException();
+
+    public void Attack(TestPlayer player, Vector3 attackerPos)
     {
-        
+        Debug.Log("함정작동");
+        Vector3 dir;
+        //Vector3 dir = (player.transform.position - attackerPos).normalized;
+        if (!CheckMoving.isTest) { dir = Vector3.right; }
+        else { dir = Vector3.left; }
+        player.StunCnt -= Atk;
+        player.GetComponent<Rigidbody>().AddForce(dir * Atk * Time.deltaTime, ForceMode.Impulse);
     }
+
+    public void SpawnEffect()
+    {
+
+    }
+
 }
