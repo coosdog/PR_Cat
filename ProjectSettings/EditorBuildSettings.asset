@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Monster.unity
     guid: 69e764221f495e94cb2084b63ef8f417
+  - enabled: 1
+    path: Assets/Scenes/VictoryScene.unity
+    guid: fefca2311b4eb74438fc33dc0469c986
   m_configObjects: {}

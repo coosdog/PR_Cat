@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Temp;
 using UnityEngine;
 
 public class Grinder : MonoBehaviour
@@ -12,5 +13,9 @@ public class Grinder : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         collision.gameObject.SetActive(false);
+        if(collision.gameObject.TryGetComponent(out TestPlayer player))
+        {
+            player.Die();
+        }
     }
 }

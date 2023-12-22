@@ -122,13 +122,13 @@ namespace Temp
     }
 
     public class TestPlayer : MonoBehaviourPun, IHitable, IPunObservable
-    {       
-        
+    {               
         public Weapon curWeapon;
         public Transform weaponSpot;
         public AnimationComponent animComponent;
         private Item curItem;
         [SerializeField] bool isGrab;
+
 
 
         RagdollScript doll;
@@ -172,7 +172,7 @@ namespace Temp
                 PointHandler.grabAct += () => { photonView.RPC("UseStrategy", RpcTarget.AllBuffered); };
                 PointHandler.dropAct += () => { photonView.RPC("Drop", RpcTarget.AllBuffered); };
             }
-        }
+        }        
 
         [PunRPC]                
         public void RagdolWalk()
@@ -180,10 +180,7 @@ namespace Temp
             doll.WalkingBehaviour();
         }        
 
-        private void Update()
-        {
 
-        }
         public void SetDefault()
         {
             curWeapon.Strategy = Item.weaponDic[Item.WEAPON_TYPE.DEFAULT];
@@ -314,6 +311,14 @@ namespace Temp
             else
             {
                 StunCnt = (int)stream.ReceiveNext();
+            }
+        }
+
+        public void Die()
+        {
+            if (photonView.IsMine)
+            {
+                PhotonNetwork.LoadLevel(0);
             }
         }
     }

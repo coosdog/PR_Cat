@@ -64,7 +64,7 @@ public class RagdollScript : MonoBehaviourPun
 
     [PunRPC]
     public void WalkingBehaviour()
-    {
+    {        
         Debug.Log("랙돌시작");
         EnableRagdoll();
         _currentState = CatState.Ragdoll;

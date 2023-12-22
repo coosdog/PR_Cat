@@ -17,5 +17,5 @@ public class PlayerSpawner : MonoBehaviourPun
         //    }
         //}
         PhotonNetwork.Instantiate("Player", transform.position, Quaternion.identity);
-    }        
+    }
 }
