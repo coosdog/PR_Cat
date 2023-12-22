@@ -120,24 +120,6 @@ namespace Temp
         public GameObject Obj { get; }
         public void Hit(IAttackable attackable, Vector3 attackerPos);
     }
-    /*
-    public class Weapon
-    {
-        public IAttackable attackStrategy;
-        public AttackStrategy strategy;
-    }
-    */
-    /*
-     public class Gun: Weapon
-     {
-         public GunStrategy gunStrategy;
-
-         public void GunStrategyAction()
-         {
-             gunStrategy.Action();
-         }
-     }
-    */
 
     public class TestPlayer : MonoBehaviourPun, IHitable, IPunObservable
     {       
@@ -159,7 +141,7 @@ namespace Temp
                 stunCnt = value;
                 if(StunCnt > 0)
                 {
-                    doll.WalkingBehaviour();
+                    photonView.RPC("RagdolWalk", RpcTarget.AllBuffered);
                     StunCnt = 0;
                 }
             }
@@ -192,6 +174,11 @@ namespace Temp
             }
         }
 
+        [PunRPC]                
+        public void RagdolWalk()
+        {
+            doll.WalkingBehaviour();
+        }        
 
         private void Update()
         {
@@ -287,17 +274,21 @@ namespace Temp
 
         private void OnTriggerEnter(Collider other)
         {
-            stunCnt -= 1;
+            //stunCnt -= 1;
             
-            //if (other.TryGetComponent(out IAttackable attackable))
-            //{                
-            //    if (attackable is Weapon)
-            //    {
-            //        if (((Weapon)attackable).owner == this)
-            //            return;
-            //    }
-            //    Hit(attackable, other.transform.position);
-            //}            
+            if (other.TryGetComponent(out IAttackable attackable))
+            {                
+                if (attackable is Weapon)
+                {
+                    if (((Weapon)attackable).owner == this)
+                        return;
+<<<<<<< HEAD
+                }
+=======
+               }
+>>>>>>> 600c9663bbc56ad7f857bee270e44f10289ff1f6
+                Hit(attackable, other.transform.position);
+            }            
         }
         
         public void GetProjectile(LongAttackItem item)
