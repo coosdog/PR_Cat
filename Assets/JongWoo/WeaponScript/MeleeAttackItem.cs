@@ -12,7 +12,7 @@ namespace Temp
 
         public void Attack(TestPlayer player, Vector3 attackerPos)
         {
-            if (weapon == null)
+            if (weapon == null) // 주인이 있을 때만 공격
                 return;            
             weapon.Attack(player, attackerPos);
         }
