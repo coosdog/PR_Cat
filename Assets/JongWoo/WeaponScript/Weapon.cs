@@ -20,7 +20,8 @@ namespace Temp
             {                
                 strategy = value;
                 if (strategy is MeleeAttackStrategy)
-                {                    
+                {
+                    Debug.Log("어택전략이 수정됨"); 
                     mst = (MeleeAttackStrategy)strategy;
                 }
                 else
@@ -44,8 +45,10 @@ namespace Temp
 
         public void Attack(Temp.TestPlayer player, Vector3 attackerPos)
         {
+            Debug.Log("어택이 실행");
             if (mst != null)
             {
+                Debug.Log("공격실행돼쑈");
                 mst.Attack(player, attackerPos);
             }
         }

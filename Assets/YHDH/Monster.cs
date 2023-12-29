@@ -132,7 +132,7 @@ namespace Temp
     public class MonsterChaseState : MonsterState
     {
         float targetDis;
-        const float ATTACK_RANGE = 5f;
+        const float ATTACK_RANGE = 2.5f;
         const float MISSING_TARGET_RANGE = 10f;
         public override void OnEnter()
         {
@@ -235,7 +235,10 @@ namespace Temp
         public override void OnEnter()
         {
             // monster.agent.ResetPath();
-            monster.agent.SetDestination(monster.transform.position);            
+            monster.agent.SetDestination(monster.transform.position);
+            Vector3 dir = (monster.targetCol.transform.position - monster.transform.position).normalized;
+            dir.y = 0;
+            monster.transform.forward = dir;
             IsDeathAttack = false;
             // 지우면 안되는 주석
             // 플레이어 스턴카운트 처리 부분해결 후 실행 시 조건에 맞는 슬라임 공격 전략 호출
@@ -268,8 +271,10 @@ namespace Temp
 
         public override void Attack(TestPlayer player, Vector3 attackerPos)
         {
-            Debug.Log("일반 공격");
-            player.GetComponent<Rigidbody>().AddExplosionForce(10, Vector3.forward, 10);
+            Vector3 dir = (player.transform.position - attackerPos).normalized;
+            dir.y = 0.4f;
+            player.GetComponent<Rigidbody>().AddForce(dir * 50f, ForceMode.Impulse);          
+            player.StunCnt += 1;
         }
     }
 
@@ -282,7 +287,7 @@ namespace Temp
 
         public override void Attack(TestPlayer player, Vector3 attackerPos)
         {
-            // 플레이어 사망 구현
+            // player.Die();
         }
     }
     public class StateMachine<T> : IStateMachine where T : class
@@ -369,8 +374,7 @@ namespace Temp
 
 
         private void Start()
-        {
-            monsterWeapon = new Weapon();
+        {            
             animator = GetComponent<Animator>();
             agent = GetComponent<NavMeshAgent>();
             sm = new StateMachine<Monster>();            

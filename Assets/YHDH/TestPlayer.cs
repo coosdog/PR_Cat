@@ -54,10 +54,11 @@ namespace Temp
         }
         public override void Attack(TestPlayer player, Vector3 attackerPos)
         {
-            player.StunCnt += (Atk- DebuffCnt);
             Vector3 dir = (player.transform.position - attackerPos).normalized;
             Debug.Log(dir);
-            player.GetComponent<Rigidbody>().AddForce(dir * 100f, ForceMode.Impulse);
+            dir.y = 0;
+            player.GetComponent<Rigidbody>().AddForce(dir * 10f, ForceMode.Impulse);
+            player.StunCnt += 1;// (Atk- DebuffCnt);
             Debug.Log("공격처리됨");
         }
 
@@ -76,7 +77,7 @@ namespace Temp
 
         public override void Attack(TestPlayer player, Vector3 attackerPos)
         {
-            Vector3 dir = (player.transform.position - attackerPos).normalized;
+            Vector3 dir = (player.transform.position - attackerPos).normalized;            
             player.GetComponent<Rigidbody>().AddForce(dir * 100f, ForceMode.Impulse);
         }
     }
@@ -139,10 +140,11 @@ namespace Temp
             set
             {
                 stunCnt = value;
-                if(StunCnt > 0)
+                if(stunCnt > 0)
                 {
-                    photonView.RPC("RagdolWalk", RpcTarget.AllBuffered);
-                    StunCnt = 0;
+                    RagdolWalk();
+                    // photonView.RPC("RagdolWalk", RpcTarget.AllBuffered);
+                    stunCnt = 0;
                 }
             }
         }
@@ -172,18 +174,27 @@ namespace Temp
                 PointHandler.grabAct += () => { photonView.RPC("UseStrategy", RpcTarget.AllBuffered); };
                 PointHandler.dropAct += () => { photonView.RPC("Drop", RpcTarget.AllBuffered); };
             }
-        }        
+        }    
+        
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                photonView.RPC("RagdolWalk", RpcTarget.AllBuffered);
+            }
+        }
 
-        [PunRPC]                
+        //[PunRPC]                
         public void RagdolWalk()
         {
-            doll.WalkingBehaviour();
+            doll.RpcWalking();
         }        
 
 
         public void SetDefault()
         {
             curWeapon.Strategy = Item.weaponDic[Item.WEAPON_TYPE.DEFAULT];
+            curWeapon.owner = this;
         }
 
         public GameObject Obj
@@ -209,10 +220,9 @@ namespace Temp
             Collider col = SearchItem();
             if (col == null || IsUse)
                 return false;
-            Item item = col.GetComponent<Item>();            
-
-
-
+            Item item = col.GetComponent<Item>();
+            if (item == null)
+                return false;
             if (item.weapon != null) 
                 return false;
 
@@ -274,16 +284,19 @@ namespace Temp
 
         private void OnTriggerEnter(Collider other)
         {
-            //stunCnt -= 1;
-            
+            //stunCnt -= 1;            
             if (other.TryGetComponent(out IAttackable attackable))
-            {                
+            {
+                if (attackable is MeleeAttackItem)
+                    return;
                 if (attackable is Weapon)
                 {
                     if (((Weapon)attackable).owner == this)
-                        return;
-                }
-                Hit(attackable, other.transform.position);
+                        return;                    
+                }                
+                animComponent.Animator.enabled = false;
+                if (photonView.IsMine)
+                    Hit(attackable, other.transform.position);
             }            
         }
         
@@ -294,11 +307,14 @@ namespace Temp
             gs.shotPoint = item.shotPos;
         }
         
+
         public void Hit(IAttackable attackable, Vector3 attackerPos)
         {
             // stunCnt -= attackable.Atk;
+            Debug.Log("공격실행됨");
+            Debug.Log(attackable);
+            Debug.Log(attackable.Atk);
             attackable.Attack(this, attackerPos);
-
             // attackable.SpawnEffect();
         }
 
