@@ -15,12 +15,6 @@ public class BlackHoleDoor : MonoBehaviour
     int CorrentionValue_Door = 20;
     float openTime = 0;
     float limitTime = 10;
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         OPObj.transform.position += Vector3.forward * Time.deltaTime * Correctionvalue;
@@ -28,10 +22,8 @@ public class BlackHoleDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("§ºêl∞≈");
         if (other.gameObject.CompareTag("OPObj"))
         {
-            Debug.Log("¿€µø");
             StartCoroutine(DoorOpen());
         }
     }
