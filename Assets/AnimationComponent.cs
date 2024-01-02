@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public interface IAnimationable
 {
+    bool canAttack { get; }
     Animator Animator { get; }
 }
 
@@ -10,6 +11,8 @@ namespace Temp
 {
     public class AnimationComponent : MonoBehaviour, IAnimationable
     {
+        bool isCheck;
+
         Weapon weapon;
         public Animator Animator => GetComponent<Animator>();
         public Item CurItem
@@ -32,6 +35,9 @@ namespace Temp
                 }
             }
         }
+
+        public bool canAttack { get => isCheck; }
+
         private Item curItem;        
         private Collider attackCol;        
 
@@ -39,7 +45,14 @@ namespace Temp
         {
             weapon = GetComponent<TestPlayer>().curWeapon;
             attackCol = weapon.GetComponent<Collider>();
+            isCheck = true;
         }
+
+        public void CountCool()
+        {
+            isCheck = false;
+        }
+
 
         public void AttackStart()
         {            
@@ -49,6 +62,12 @@ namespace Temp
         {            
             attackCol.enabled = false;
         }
+
+        public void ResetCool()
+        {
+            isCheck = true;
+        }
+
     }
 }
 

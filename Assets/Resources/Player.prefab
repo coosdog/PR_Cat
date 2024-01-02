@@ -2383,6 +2383,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 2
     Name: IsAttack
+  - Type: 9
+    SynchronizeType: 0
+    Name: IsStun
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0

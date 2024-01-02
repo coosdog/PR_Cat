@@ -50,7 +50,10 @@ namespace Temp
         private int DebuffCnt = 5;
         public override void Action(IAnimationable animationable)
         {
-            animationable.Animator.SetTrigger("IsAttack"); // ���߿� �ָ����� �ٲܰ�            
+            Debug.Log(animationable.canAttack);
+            if (animationable.canAttack==true)
+            animationable.Animator.SetTrigger("IsAttack");
+
         }
         public override void Attack(TestPlayer player, Vector3 attackerPos)
         {
@@ -215,7 +218,7 @@ namespace Temp
 
         public bool BtnInteraction()
         {
-            Debug.Log(photonView.IsMine);
+            //Debug.Log(photonView.IsMine);
             Collider col = SearchItem();
             if (col == null || IsUse)
                 return false;
@@ -245,7 +248,7 @@ namespace Temp
             //curItem.grabPoint.transform.position = weaponSpot.position;
             //curItem.grabPoint.transform.rotation = weaponSpot.rotation;
 
-
+            
             curItem.weapon = curWeapon;
             curItem.weapon.owner = this;
             curWeapon.Strategy = curItem.strategy;
