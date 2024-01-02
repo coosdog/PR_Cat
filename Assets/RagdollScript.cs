@@ -95,8 +95,8 @@ public class RagdollScript : MonoBehaviourPun
     }
     IEnumerator StunCo()
     {
-        _animator.SetTrigger("IsStun");
-        yield return new WaitForSeconds(3f);
+        _animator.SetTrigger("IsStun");        
+        yield return new WaitForSeconds(3f);        
         _playerController.enabled = true;
     }
 

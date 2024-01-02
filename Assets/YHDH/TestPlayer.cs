@@ -169,8 +169,7 @@ namespace Temp
             animComponent = GetComponent<AnimationComponent>();
             if (photonView.IsMine)
             {
-                curItem = new Item();
-                
+                curItem = new Item();                
                 PointHandler.grabAct += () => { photonView.RPC("UseStrategy", RpcTarget.AllBuffered); };
                 PointHandler.dropAct += () => { photonView.RPC("Drop", RpcTarget.AllBuffered); };
             }
