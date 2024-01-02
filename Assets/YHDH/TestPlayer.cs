@@ -336,7 +336,9 @@ namespace Temp
         {
             if (photonView.IsMine)
             {
+                PhotonNetwork.LeaveRoom(this);
                 PhotonNetwork.LoadLevel(0);
+                GameManager.instance.PlayerCount--;
             }
         }
     }
