@@ -8,67 +8,37 @@ using UnityEngine.UIElements;
 public class UIManager : MonoBehaviour
 {
     PhotonView pv;
+    [SerializeField]
+    Canvas selectUI;
+    bool IsEnter => PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount != 1;
 
     private void Start()
     {
         pv = GetComponent<PhotonView>(); 
-    }
-    public void EnterBlackHole()
-    {
+
         if (PhotonNetwork.IsMasterClient)
         {
-            pv.RPC("BlackHole", RpcTarget.AllBuffered);
+            selectUI.gameObject.SetActive(true);
         }
-
+    }
+    public void EnterGameMode(int modeNum)
+    {
+        if (IsEnter)
+        {
+            pv.RPC("LoadGame", RpcTarget.AllBuffered, modeNum);
+        }
         else
         {
-            Debug.Log("마스터가 아님");
+            Debug.Log("마스터가 아니거나 플레이어가 1명인 경우");
+            // 버튼을 비활성화
         }
     }
 
-    public void EnterDoll()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            pv.RPC("Doll", RpcTarget.AllBuffered);
-        }
-
-        else
-        {
-            Debug.Log("마스터가 아님");
-        }
-    }
-
-    public void EnterMonster()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            pv.RPC("Monster", RpcTarget.AllBuffered);
-        }
-
-        else
-        {
-            Debug.Log("마스터가 아님");
-        }
-    }
-
+    
     [PunRPC]
-    public void BlackHole()
+    public void LoadGame(int modeNum)
     {
-        PhotonNetwork.LoadLevel(2);
+        PhotonNetwork.LoadLevel(modeNum);
     }
-
-    [PunRPC]
-    public void Doll()
-    {
-        PhotonNetwork.LoadLevel(3);
-    }
-
-    [PunRPC]
-    public void Monster()
-    {
-        PhotonNetwork.LoadLevel(4);
-    }
-
 }
 
