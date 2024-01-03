@@ -10,6 +10,7 @@ using Temp;
 
 public class GameManager : Singleton<GameManager>
 {
+    public List<TestPlayer> playerList;
     public event Action onGameStart;
     public event Action onGameEnd;
     private const short VictorySceneNumber = 5;
