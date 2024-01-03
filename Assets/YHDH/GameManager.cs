@@ -31,7 +31,7 @@ public class GameManager : Singleton<GameManager>
     {
         //if (!photonView.IsMine)
         //    return;        
-        onGameStart += () => { PlayerCount = PhotonNetwork.CurrentRoom.PlayerCount; };
+        onGameStart += () => { PlayerCount = PhotonNetwork.CurrentRoom.PlayerCount; };        
         onGameEnd += () => { PlayerCount = 0; }; 
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode lsm) => 
         {
@@ -39,6 +39,10 @@ public class GameManager : Singleton<GameManager>
                 return;
             GameStart(); 
         };        
+
+
+       
+
     }    
 
     public void GameStart()

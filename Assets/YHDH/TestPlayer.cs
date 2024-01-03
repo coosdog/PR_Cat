@@ -334,12 +334,15 @@ namespace Temp
 
         public void Die()
         {
+            Destroy(gameObject);
+            /*
             if (photonView.IsMine)
             {
                 PhotonNetwork.LeaveRoom(this);
                 PhotonNetwork.LoadLevel(0);
                 GameManager.instance.PlayerCount--;
             }
+            */
         }
     }
 }
