@@ -9,6 +9,7 @@ using Temp;
 
 public class GameManager : Singleton<GameManager>, IPunObservable
 {
+    public List<TestPlayer> playerList;
     public event Action onGameStart;
     public event Action onGameEnd;
     private const int VictorySceneNumber = 5;

@@ -16,13 +16,18 @@ public class SoundManager : Singleton<SoundManager>
 
     public AudioClip testclip;
 
+    // 내가 만든거
+    public AudioSource audioSource;
+
     private void Awake()
     {
         base.Awake();
         Init();
+        audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
+        
         /*
         if (instance == null)
             instance = this;
@@ -56,7 +61,7 @@ public class SoundManager : Singleton<SoundManager>
 
     public void Play(AudioClip clip, Transform target, bool loop)
     {
-        if (pool.Count <= 2)
+        if (pool.Count <= 5)
         {
             Init();
         }
