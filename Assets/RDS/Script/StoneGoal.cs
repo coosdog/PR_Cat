@@ -19,7 +19,7 @@ public class StoneGoal : MonoBehaviour
             int a = collision.gameObject.GetPhotonView().ViewID;
             Dictionary<int, Photon.Realtime.Player> DIC = PhotonNetwork.CurrentRoom.Players;
 
-            GameManager.instance.playerList
+            //GameManager.instance.playerList
 
 
             for(int i = 0; i < DIC.Count; i++)
@@ -43,11 +43,11 @@ public class StoneGoal : MonoBehaviour
         }
         foreach(Collider col in listCol)
         {
-            if (col.gameObject.GetPhotonView().ViewID != a)
-            {
-                if (col.GetComponent<TestPlayer>() != null)
-                    col.GetComponent<TestPlayer>().Die();
-            }
+            //if (col.gameObject.GetPhotonView().ViewID != a)
+            //{
+            //    if (col.GetComponent<TestPlayer>() != null)
+            //        col.GetComponent<TestPlayer>().Die();
+            //}
         }
         
     }
