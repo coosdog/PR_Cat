@@ -8,12 +8,11 @@ using UnityEngine;
 public class Trap : MonoBehaviour, IAttackable
 {
     MovingTrap CheckMoving;
-    public int AttackDamege;
+    private int AttackDamege = 700;
     public int Atk => AttackDamege;
 
     private void Start()
     {
-        AttackDamege = 100;
         CheckMoving = GetComponentInParent<MovingTrap>();
     }
 
@@ -26,7 +25,7 @@ public class Trap : MonoBehaviour, IAttackable
         //Vector3 dir = (player.transform.position - attackerPos).normalized;
         if (!CheckMoving.isTest) { dir = Vector3.right; }
         else { dir = Vector3.left; }
-        player.StunCnt -= Atk;
+        player.StunCnt += Atk;
         player.GetComponent<Rigidbody>().AddForce(dir * Atk * Time.deltaTime, ForceMode.Impulse);
     }
 

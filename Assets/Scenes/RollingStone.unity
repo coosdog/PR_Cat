@@ -1027,6 +1027,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764460469658045897, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
@@ -1568,6 +1572,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764460469658045897, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
@@ -1901,6 +1909,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764460469658045897, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
@@ -5740,6 +5752,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764460469658045897, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
@@ -8240,6 +8256,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764460469658045897, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
@@ -9538,7 +9558,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 5000
 --- !u!1001 &450391707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9754,6 +9773,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764460469658045897, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
@@ -10601,6 +10624,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764460469658045897, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
@@ -11682,7 +11709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 5000
 --- !u!4 &551764188 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8831960118778701571, guid: 561fd20429cb66947aa982b65892cdad, type: 3}
@@ -12652,7 +12678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 5000
 --- !u!1001 &614837180
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12926,6 +12951,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764460469658045897, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
@@ -16561,7 +16590,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 5000
 --- !u!4 &845159051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b549b1699e4cdad44b2c014041303df4, type: 3}
@@ -18665,6 +18693,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764460469658045897, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
@@ -20378,7 +20410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 5000
 --- !u!1 &1043400889
 GameObject:
   m_ObjectHideFlags: 0
@@ -21044,7 +21075,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 5000
 --- !u!4 &1089136727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 246bcb60ae5be3744a4ea86bab749f44, type: 3}
@@ -23669,7 +23699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 5000
 --- !u!1001 &1233938006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24584,7 +24613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 5000
 --- !u!1 &1283828798
 GameObject:
   m_ObjectHideFlags: 0
@@ -26617,6 +26645,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764460469658045897, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
@@ -27467,7 +27499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 5000
 --- !u!1 &1431927273
 GameObject:
   m_ObjectHideFlags: 0
@@ -28628,7 +28659,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 5000
 --- !u!1001 &1473218815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31493,7 +31523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 5000
 --- !u!1 &1609840068
 GameObject:
   m_ObjectHideFlags: 0
@@ -32426,7 +32455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 100
 --- !u!1 &1648117123
 GameObject:
   m_ObjectHideFlags: 0
@@ -36127,7 +36155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 5000
 --- !u!1001 &1836767145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36532,6 +36559,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764460469658045897, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
@@ -38927,6 +38958,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764460469658045897, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
@@ -43215,6 +43250,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1764460469658045897, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856245389808091273, guid: eddf4551d21551f4b8de0ff6096631a0, type: 3}
