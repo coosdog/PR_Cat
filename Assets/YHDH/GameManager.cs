@@ -11,7 +11,8 @@ using Temp;
 public class GameManager : Singleton<GameManager>
 {
     public event Action onGameStart;
-    public event Action onGameEnd;      
+    public event Action onGameEnd;
+    private const short VictorySceneNumber = 5;
     public int PlayerCount
     {
         get => playerCount;
@@ -20,7 +21,7 @@ public class GameManager : Singleton<GameManager>
             playerCount = value;            
             if(playerCount == 1)
             {
-                // ½Â¸®¾ÀÀüÈ¯
+                PhotonNetwork.LoadLevel(VictorySceneNumber);
                 Debug.Log("½Â¸®");
             }
         }

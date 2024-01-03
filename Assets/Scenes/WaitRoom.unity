@@ -181,10 +181,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BlackHole
+  m_text: "\uBE14\uB799\uD640"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 45aaec6da6584c245a753e42ccfa142b, type: 2}
-  m_sharedMaterial: {fileID: 566910799412383377, guid: 45aaec6da6584c245a753e42ccfa142b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ffadac5dc3e66fc4eb9bce2f2955544d, type: 2}
+  m_sharedMaterial: {fileID: -5341464036010993761, guid: ffadac5dc3e66fc4eb9bce2f2955544d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -422,10 +422,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RoomSetting
+  m_text: "\uAC8C\uC784\uC744 \uC120\uD0DD\uD574\uC8FC\uC138\uC694"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 45aaec6da6584c245a753e42ccfa142b, type: 2}
-  m_sharedMaterial: {fileID: 566910799412383377, guid: 45aaec6da6584c245a753e42ccfa142b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ffadac5dc3e66fc4eb9bce2f2955544d, type: 2}
+  m_sharedMaterial: {fileID: -5341464036010993761, guid: ffadac5dc3e66fc4eb9bce2f2955544d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -544,6 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627c59969ce72e54baf9578a614b8087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectUI: {fileID: 1162469945}
 --- !u!114 &492104387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,17 +625,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: "\uB3CC\uAD74\uB7EC\uAC00\uC720"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 45aaec6da6584c245a753e42ccfa142b, type: 2}
-  m_sharedMaterial: {fileID: 566910799412383377, guid: 45aaec6da6584c245a753e42ccfa142b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ffadac5dc3e66fc4eb9bce2f2955544d, type: 2}
+  m_sharedMaterial: {fileID: -5341464036010993761, guid: ffadac5dc3e66fc4eb9bce2f2955544d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4281019179
+  m_fontColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -651,8 +652,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -909,12 +910,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 492104386}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: EnterBlackHole
-        m_Mode: 1
+        m_MethodName: EnterGameMode
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -975,7 +976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1162469943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,10 +1118,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: "\uBAAC\uC2A4\uD130"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 45aaec6da6584c245a753e42ccfa142b, type: 2}
-  m_sharedMaterial: {fileID: 566910799412383377, guid: 45aaec6da6584c245a753e42ccfa142b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ffadac5dc3e66fc4eb9bce2f2955544d, type: 2}
+  m_sharedMaterial: {fileID: -5341464036010993761, guid: ffadac5dc3e66fc4eb9bce2f2955544d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1144,8 +1145,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1432,12 +1433,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 492104386}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: EnterMonster
-        m_Mode: 1
+        m_MethodName: EnterGameMode
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1660,12 +1661,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 492104386}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: EnterDoll
-        m_Mode: 1
+        m_MethodName: EnterGameMode
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
