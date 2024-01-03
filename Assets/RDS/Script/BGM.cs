@@ -7,7 +7,12 @@ public class BGM : MonoBehaviour
     public AudioClip Bgm;
     void Start()
     {
-        SoundManager.instance.Play(Bgm, this.transform, true);
+        Debug.Log("비지엠 시작");
+        //SoundManager.instance.Play(Bgm, this.transform, true);
+
+        // 내가 만든거
+        SoundManager.instance.audioSource.clip = Bgm;
+        SoundManager.instance.audioSource.Play();
     }
     public void ExchangeBGM(bool isloop , AudioClip NextAudio = null )
     {

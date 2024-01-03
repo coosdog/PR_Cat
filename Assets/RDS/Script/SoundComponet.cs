@@ -6,6 +6,11 @@ public class SoundComponet : MonoBehaviour
 {
     public AudioSource audioSource;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void Play(AudioClip clip,bool loop)
     {
         audioSource = GetComponent<AudioSource>();
