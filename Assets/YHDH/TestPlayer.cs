@@ -139,9 +139,10 @@ namespace Temp
         [SerializeField] private int stunCnt;
         public int StunCnt
         {
+            
             get => stunCnt;
             set
-            {
+            {                
                 stunCnt = value;
                 if(stunCnt > 0)
                 {
@@ -332,15 +333,14 @@ namespace Temp
             }
         }
 
+
         public void Die()
         {
             Destroy(gameObject);
-            if (photonView.IsMine)
-            {
-                PhotonNetwork.LeaveRoom(this);
-                PhotonNetwork.LoadLevel(0);
-                GameManager.instance.PlayerCount--;
-            }
+            PhotonNetwork.LeaveRoom(this);
+            PhotonNetwork.LoadLevel(0);
+            GameManager.instance.PlayerCount--;
+            GameManager.instance.DestroySelf();            
         }
     }
 }

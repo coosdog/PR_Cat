@@ -6,7 +6,8 @@ using Photon.Pun;
 public class BtnController : MonoBehaviour
 {
     public void LoadMainScene()
-    {
+    {        
+        PhotonNetwork.LeaveRoom();        
         PhotonNetwork.LoadLevel(0);
     }
 }

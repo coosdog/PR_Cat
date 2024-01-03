@@ -7,23 +7,22 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Temp;
 
-
-public class GameManager : Singleton<GameManager>
+public class GameManager : Singleton<GameManager>, IPunObservable
 {
     public List<TestPlayer> playerList;
     public event Action onGameStart;
     public event Action onGameEnd;
-    private const short VictorySceneNumber = 5;
+    private const int VictorySceneNumber = 5;
     public int PlayerCount
     {
         get => playerCount;
         set
         {
-            playerCount = value;            
+            playerCount = value;
             if(playerCount == 1)
             {
-                PhotonNetwork.LoadLevel(VictorySceneNumber);
-                Debug.Log("½Â¸®");
+                if (PhotonNetwork.IsMasterClient)
+                    PhotonNetwork.LoadLevel(VictorySceneNumber);
             }
         }
     }
@@ -33,7 +32,7 @@ public class GameManager : Singleton<GameManager>
     {
         //if (!photonView.IsMine)
         //    return;        
-        onGameStart += () => { PlayerCount = PhotonNetwork.CurrentRoom.PlayerCount; };        
+        onGameStart += () => {  PlayerCount = PhotonNetwork.CurrentRoom.PlayerCount; };
         onGameEnd += () => { PlayerCount = 0; }; 
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode lsm) => 
         {
@@ -41,10 +40,6 @@ public class GameManager : Singleton<GameManager>
                 return;
             GameStart(); 
         };        
-
-
-       
-
     }    
 
     public void GameStart()
@@ -54,5 +49,27 @@ public class GameManager : Singleton<GameManager>
     public void GameEnd()
     {
         onGameEnd?.Invoke();
+    }
+
+    public void DestroySelf()
+    {
+        Destroy(gameObject);
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(PlayerCount);
+        }
+        else
+        {
+            PlayerCount = (int)stream.ReceiveNext();
+        }
+    }
+
+    private void Update()
+    {
+        Debug.Log(PlayerCount);
     }
 }
