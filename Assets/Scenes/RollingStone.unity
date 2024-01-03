@@ -27096,7 +27096,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 796948bfa75e5ee4ba5a68eabfa08ec3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 50
+      value: 583
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 796948bfa75e5ee4ba5a68eabfa08ec3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -32426,7 +32426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b561720d13648438c96ab7f4f43e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamege: 5000
+  AttackDamege: 100
 --- !u!1 &1648117123
 GameObject:
   m_ObjectHideFlags: 0
@@ -40874,7 +40874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &2043429012
 Rigidbody:
   m_ObjectHideFlags: 0

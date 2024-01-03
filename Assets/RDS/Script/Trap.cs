@@ -13,6 +13,7 @@ public class Trap : MonoBehaviour, IAttackable
 
     private void Start()
     {
+        AttackDamege = 100;
         CheckMoving = GetComponentInParent<MovingTrap>();
     }
 
