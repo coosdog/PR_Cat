@@ -181,6 +181,9 @@ namespace Temp
 
         private void Update()
         {
+            if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+                GameManager.instance.PlayerCount--;
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 photonView.RPC("RagdolWalk", RpcTarget.AllBuffered);
@@ -351,17 +354,10 @@ namespace Temp
             {
                 PhotonNetwork.LeaveRoom(this);
                 PhotonNetwork.LoadLevel(0);
-                GameManager.instance.DestroySelf();
+                photonView.RPC("Test", RpcTarget.All);
             }
-
-            StartCoroutine(TestCo());
         }
 
-        IEnumerator TestCo()
-        {
-            yield return new WaitForSeconds(0.5f);
-            photonView.RPC("Test", RpcTarget.AllBuffered);
-        }
 
         [PunRPC]
         public void Test()

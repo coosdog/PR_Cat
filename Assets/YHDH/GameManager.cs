@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Temp;
 
-public class GameManager : Singleton<GameManager>, IPunObservable
+public class GameManager : Singleton<GameManager>
 {
     public List<TestPlayer> playerList;
     public event Action onGameStart;
@@ -18,13 +18,14 @@ public class GameManager : Singleton<GameManager>, IPunObservable
         get => playerCount;
         set
         {
-            Debug.Log(playerCount);
-            playerCount = value;
-            if(playerCount <= 1)
+            Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount+" :: pc ---> " +playerCount);
+            if(playerCount == 1)
             {
-                if (PhotonNetwork.IsMasterClient)
-                    PhotonNetwork.LoadLevel(VictorySceneNumber);
+                playerCount = 0;
+                Debug.Log("³­°¡?");
+                SceneManager.LoadScene(VictorySceneNumber);
             }
+            playerCount = value;
         }
     }
     [SerializeField]
@@ -32,14 +33,20 @@ public class GameManager : Singleton<GameManager>, IPunObservable
 
     private void Start()
     {
+        //playerCount = 0;
         //if (!photonView.IsMine)
         //    return;        
-        onGameStart += () => {  PlayerCount = PhotonNetwork.CurrentRoom.PlayerCount; };
-        onGameEnd += () => { PlayerCount = 0; }; 
-        SceneManager.sceneLoaded += (Scene scene, LoadSceneMode lsm) => 
+        onGameStart = () => { PlayerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+            Debug.Log("onGameStart ---> "+PhotonNetwork.CurrentRoom.PlayerCount);
+        };
+        // onGameEnd += () => { PlayerCount = 0; }; 
+        SceneManager.sceneLoaded += (Scene scene, LoadSceneMode lsm) =>
         {
-            if (scene.name == "Lobby" || scene.name == "WaitRoom")
+            if (scene.name == "Lobby" || scene.name == "WaitRoom" || scene.name == "VictoryScene")
+            {
+                GameManager.instance.playerCount = 0;
                 return;
+            }
             GameStart();            
         };        
     }    
@@ -58,20 +65,8 @@ public class GameManager : Singleton<GameManager>, IPunObservable
         Destroy(gameObject);
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(PlayerCount);
-        }
-        else
-        {
-            PlayerCount = (int)stream.ReceiveNext();
-        }
-    }
-
     private void Update()
     {
-        Debug.Log(PlayerCount);
+       // Debug.Log(PlayerCount);
     }
 }
