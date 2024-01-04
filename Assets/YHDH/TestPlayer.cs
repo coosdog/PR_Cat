@@ -126,7 +126,7 @@ namespace Temp
     }
 
     public class TestPlayer : MonoBehaviourPun, IHitable, IPunObservable
-    {               
+    {
         public Weapon curWeapon;
         public Transform weaponSpot;
         public AnimationComponent animComponent;
@@ -139,12 +139,12 @@ namespace Temp
         [SerializeField] private int stunCnt;
         public int StunCnt
         {
-            
+
             get => stunCnt;
             set
-            {                
+            {
                 stunCnt = value;
-                if(stunCnt > 0)
+                if (stunCnt > 0)
                 {
                     RagdolWalk();
                     // photonView.RPC("RagdolWalk", RpcTarget.AllBuffered);
@@ -160,8 +160,8 @@ namespace Temp
                 isUse = value;
                 if (!isUse) // ���⸦ �������� ���� �� �⺻�������� ����
                 {
-                    SetDefault();                    
-                }                
+                    SetDefault();
+                }
             }
         }
         private bool isUse;
@@ -173,12 +173,12 @@ namespace Temp
             animComponent = GetComponent<AnimationComponent>();
             if (photonView.IsMine)
             {
-                curItem = new Item();                
+                curItem = new Item();
                 PointHandler.grabAct += () => { photonView.RPC("UseStrategy", RpcTarget.AllBuffered); };
                 PointHandler.dropAct += () => { photonView.RPC("Drop", RpcTarget.AllBuffered); };
             }
-        }    
-        
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -191,7 +191,7 @@ namespace Temp
         public void RagdolWalk()
         {
             doll.RpcWalking();
-        }        
+        }
 
 
         public void SetDefault()
@@ -226,17 +226,17 @@ namespace Temp
             Item item = col.GetComponent<Item>();
             if (item == null)
                 return false;
-            if (item.weapon != null) 
+            if (item.weapon != null)
                 return false;
 
             curItem = item;
             Debug.Log(item.name);
             photonView.RPC("SetWeapon", RpcTarget.AllBuffered);
-            
+
             // SetWeapon(item);
             return true;
         }
-                
+
         [PunRPC]
         public void SetWeapon()
         {
@@ -249,7 +249,7 @@ namespace Temp
             //curItem.grabPoint.transform.position = weaponSpot.position;
             //curItem.grabPoint.transform.rotation = weaponSpot.rotation;
 
-            
+
             curItem.weapon = curWeapon;
             curItem.weapon.owner = this;
             curWeapon.Strategy = curItem.strategy;
@@ -264,12 +264,12 @@ namespace Temp
                 GetProjectile((LongAttackItem)curItem);
             }
         }
-      
+
         public Collider SearchItem()
         {
-            Collider[] cols = Physics.OverlapSphere(transform.position, 2, 1<<7);
-            if(cols.Length > 0)
-            {                
+            Collider[] cols = Physics.OverlapSphere(transform.position, 2, 1 << 7);
+            if (cols.Length > 0)
+            {
                 return cols[0];
             }
             return null;
@@ -279,9 +279,9 @@ namespace Temp
         public void Drop()
         {
             if (curWeapon.Strategy is DefaultStrategy)
-                return;            
+                return;
             curWeapon.transform.GetChild(0).GetChild(0).transform.SetParent(null);
-            IsUse = false;            
+            IsUse = false;
             animComponent.CurItem = null;
         }
 
@@ -295,21 +295,21 @@ namespace Temp
                 if (attackable is Weapon)
                 {
                     if (((Weapon)attackable).owner == this)
-                        return;                    
-                }                
+                        return;
+                }
                 animComponent.Animator.enabled = false;
                 if (photonView.IsMine)
                     Hit(attackable, other.transform.position);
-            }            
+            }
         }
-        
+
         public void GetProjectile(LongAttackItem item)
         {
             GunStrategy gs = (GunStrategy)curWeapon.Strategy;
             gs.bullet = item.projectileObj;
             gs.shotPoint = item.shotPos;
         }
-        
+
 
         public void Hit(IAttackable attackable, Vector3 attackerPos)
         {
@@ -337,10 +337,36 @@ namespace Temp
         public void Die()
         {
             Destroy(gameObject);
-            PhotonNetwork.LeaveRoom(this);
-            PhotonNetwork.LoadLevel(0);
+            //int testNum = this.photonView.ViewID;
+            //for(int i=0; i < GameManager.instance.playerList.Count; i++)
+            //{
+            //    if(GameManager.instance.playerList[i].gameObject.GetPhotonView().ViewID == testNum)
+            //    {
+            //        GameManager.instance.playerList.RemoveAt(i);
+            //        Debug.Log("검출");
+            //    }
+            //}
+
+            if (photonView.IsMine)
+            {
+                PhotonNetwork.LeaveRoom(this);
+                PhotonNetwork.LoadLevel(0);
+                GameManager.instance.DestroySelf();
+            }
+
+            StartCoroutine(TestCo());
+        }
+
+        IEnumerator TestCo()
+        {
+            yield return new WaitForSeconds(0.5f);
+            photonView.RPC("Test", RpcTarget.AllBuffered);
+        }
+
+        [PunRPC]
+        public void Test()
+        {
             GameManager.instance.PlayerCount--;
-            GameManager.instance.DestroySelf();            
         }
     }
 }

@@ -17,7 +17,7 @@ public class PlayerSpawner : MonoBehaviourPun
         //    }
         //}
         GameObject playerObj = PhotonNetwork.Instantiate("Player", transform.position, Quaternion.identity);
-        //GameManager.instance.playerList.Add(playerObj.GetComponent<Temp.TestPlayer>());
+        GameManager.instance.playerList.Add(playerObj.GetComponent<Temp.TestPlayer>());
         // 게임매니저가 TestPlayer든 게임오브젝트 리스트라던지 가지고 있어서 담아준다.
     }
 }
