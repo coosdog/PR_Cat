@@ -55,13 +55,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //if(PhotonNetwork.IsMasterClient)
         //    PhotonNetwork.Instantiate("Bat", transform.position - new Vector3(0, 11, 0), transform.rotation);
         //PhotonNetwork.Instantiate("RagDollPlayer", transform.position, transform.rotation);
-        if (!PhotonNetwork.CurrentRoom.IsOpen)
-        {
-            PhotonNetwork.LeaveRoom();
-            PhotonNetwork.LoadLevel(0);
-        }
-        else
-            PhotonNetwork.LoadLevel(1);
+        //if (!PhotonNetwork.CurrentRoom.IsOpen)
+        //{
+        //    PhotonNetwork.LeaveRoom();
+        //    PhotonNetwork.LoadLevel(0);
+        //}
+
+        PhotonNetwork.LoadLevel(1);
         
         //photonView.RPC("OnGameRoom", RpcTarget.AllBuffered);
         // 付胶磐啊 规父电促
@@ -74,6 +74,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log("规积己凳");
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 5;
-        PhotonNetwork.CreateRoom("1锅规 积己", roomOptions);
+        PhotonNetwork.CreateRoom(null, roomOptions);
     }
 }

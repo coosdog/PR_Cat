@@ -18,14 +18,16 @@ public class GameManager : Singleton<GameManager>, IPunObservable
         get => playerCount;
         set
         {
+            Debug.Log(playerCount);
             playerCount = value;
-            if(playerCount == 1)
+            if(playerCount <= 1)
             {
                 if (PhotonNetwork.IsMasterClient)
                     PhotonNetwork.LoadLevel(VictorySceneNumber);
             }
         }
     }
+    [SerializeField]
     private int playerCount;
 
     private void Start()
@@ -38,7 +40,7 @@ public class GameManager : Singleton<GameManager>, IPunObservable
         {
             if (scene.name == "Lobby" || scene.name == "WaitRoom")
                 return;
-            GameStart(); 
+            GameStart();            
         };        
     }    
 

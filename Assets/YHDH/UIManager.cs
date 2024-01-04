@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
         {
             pv.RPC("LoadGame", RpcTarget.AllBuffered, modeNum);
             PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
         }
     }
 
