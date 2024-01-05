@@ -38,7 +38,6 @@ namespace Temp
             {
                 PhotonNetwork.Instantiate("Monster", new Vector3(0, 1, 0), Quaternion.identity);
             }
-            
         }             
 
         IEnumerator SpawnCo()

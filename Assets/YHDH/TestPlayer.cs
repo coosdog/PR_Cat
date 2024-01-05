@@ -243,8 +243,6 @@ namespace Temp
         [PunRPC]
         public void SetWeapon()
         {
-            Debug.Log(curItem.name);
-            Debug.Log("포톤뷰 ismine : " + photonView.IsMine);
             //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.red;
             curItem.grabPoint.transform.parent = weaponSpot;
             curItem.grabPoint.localPosition = Vector3.zero;
