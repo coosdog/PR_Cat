@@ -106,7 +106,7 @@ public class BlackHoleMain : MonoBehaviour
             //if (col.GetComponent<Player>().Weight > holePower)
             //    continue;
             if (col.GetComponent<PlayerController>() != null)
-                col.GetComponent<PlayerController>().Speed = 2.5f;
+                col.GetComponent<PlayerController>().Speed = 10f;
         }
     }
 

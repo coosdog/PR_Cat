@@ -6,8 +6,9 @@ using Temp;
 
 public class PlayerOut : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        collision.gameObject.GetComponent<TestPlayer>().Die();
+        if (other.gameObject.GetComponent<TestPlayer>() != null)
+            other.gameObject.GetComponent<Temp.TestPlayer>().Die();
     }
 }

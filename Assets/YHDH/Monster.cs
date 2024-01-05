@@ -336,7 +336,7 @@ namespace Temp
 
     
 
-    public class Monster : MonoBehaviour
+    public class Monster : Singleton<Monster>
     {
         public enum ATTACK_STATE
         {
