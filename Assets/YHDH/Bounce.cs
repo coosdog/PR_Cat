@@ -31,7 +31,7 @@ public class Bounce : MonoBehaviour
     {
         if(other.transform.GetComponent<Temp.TestPlayer>() != null) 
         {
-            other.gameObject.SetActive(false);
+            other.GetComponent<Temp.TestPlayer>().Die();
         }
     }
 }
