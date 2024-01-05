@@ -13,7 +13,6 @@ public class ElectricBullet : TesBullet
         player.animComponent.Animator.SetBool("ElectBool", true);
         yield return new WaitForSeconds(2f);
         player.animComponent.Animator.SetBool("ElectBool", false);
-        player.StunCnt+=atk;
     }
 
     private void Start()
@@ -38,7 +37,8 @@ public class ElectricBullet : TesBullet
     {
         PlayerController pc = player.GetComponent<PlayerController>();
         float defaultSpeed = pc.Speed;
-        pc.Speed = 0f;
+        //pc.Speed = 0f;
+        player.StunCnt += atk;
         //StartCoroutine(TurnOffAniCo(player));
         //pc.Speed = defaultSpeed;  //12.19 JongWoo: pc.Speed must be return where after this Animator Or after Ragdoll script
         SpawnEffect();

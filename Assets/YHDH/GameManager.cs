@@ -64,6 +64,10 @@ public class GameManager : Singleton<GameManager>
     {
         Destroy(gameObject);
     }
+    public void End()
+    {
+        Application.Quit();
+    }
 
     private void Update()
     {

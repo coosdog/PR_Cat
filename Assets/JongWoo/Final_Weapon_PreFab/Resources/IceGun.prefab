@@ -327,7 +327,7 @@ MonoBehaviour:
   WeaponType: 1
   weapon: {fileID: 0}
   shotPos: {fileID: 2736151648696183567}
-  projectileObj: {fileID: 1018882707796302, guid: bcd79db231b8c1d4c95b7d778789be03, type: 3}
+  projectileObj: {fileID: 1018882707796302, guid: a14e36d8cc10879429d6cd1e412706c1, type: 3}
 --- !u!65 &2427140529389484814
 BoxCollider:
   m_ObjectHideFlags: 0
