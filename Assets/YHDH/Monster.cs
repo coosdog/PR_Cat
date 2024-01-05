@@ -287,7 +287,7 @@ namespace Temp
 
         public override void Attack(TestPlayer player, Vector3 attackerPos)
         {
-            // player.Die();
+            player.Die();
         }
     }
     public class StateMachine<T> : IStateMachine where T : class
